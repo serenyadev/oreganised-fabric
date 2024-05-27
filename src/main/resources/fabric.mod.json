@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "mod_id",
+	"id": "oreganized",
 	"version": "${version}",
 	"name": "Mod Name",
 	"description": "Fabric mod template for The Sappho Company",
@@ -16,17 +16,17 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "company.sappho.mod_id.ModID"
+          "galena.oreganized.Oreganized"
 		],
 		"client": [
-			"company.sappho.mod_id.client.ModIDClient"
+			"galena.oreganized.client.OreganizedClient"
 		],
 		"fabric-datagen": [
-			"company.sappho.mod_id.datagen.ModIDDatagen"
+          "galena.oreganized.datagen.ModIDDatagen"
 		]
 	},
 	"mixins": [
-		"mod_id.mixins.json"
+		"oreganized.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.0",
@@ -35,5 +35,6 @@
 		"fabric-api": ">=0.90.0"
 	},
 	"suggests": {
-	}
+	},
+	"accessWidener": "oreganized.accesswidener"
 }

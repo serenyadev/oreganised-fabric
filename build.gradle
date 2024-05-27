@@ -1,13 +1,21 @@
 plugins {
-	id 'fabric-loom' version '1.5-SNAPSHOT'
+	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
 }
 
 version = project.mod_version
 group = project.maven_group
+var modules = ['accessors', 'base', 'blocks', 'client_events', 'common', 'core', 'data', 'entity', 'extensions', 'fluids',
+           'gui_utils', 'items', 'lazy_registration', 'level_events', 'loot', 'model_builders', 'model_loader',
+			'model_materials', 'models', 'networking', 'obj_loader', 'recipe_book_categories', 'registries', 'tags', 'transfer',
+		   'utility']
 
 base {
 	archivesName = project.archives_base_name
+}
+
+loom {
+	accessWidenerPath = project.file("src/main/resources/oreganized.accesswidener")
 }
 
 repositories {
@@ -19,6 +27,25 @@ repositories {
 		name = 'Quilt'
 		url = "https://maven.quiltmc.org/repository/release/"
 	}
+	maven {
+		name = "DevOS"
+		url = "https://mvn.devos.one/releases/"
+	}
+
+	maven {
+		name = "JamiesWhiteShirt"
+		url = "https://maven.jamieswhiteshirt.com/libs-release"
+		content {
+			includeGroup "com.jamieswhiteshirt"
+		}
+	}
+
+	maven {
+		name = "Fuzs Mod Resources"
+		url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+	}
+
+	mavenCentral()
 }
 
 fabricApi {
@@ -36,6 +63,11 @@ dependencies {
 
 	// Dependencies
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_version}"
+
+	for(port_lib in modules ) {
+		modImplementation(include("io.github.fabricators_of_create.Porting-Lib:${port_lib}:${project.port_lib_version}"))
+	}
 }
 
 processResources {

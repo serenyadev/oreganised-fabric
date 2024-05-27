@@ -40,11 +40,9 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-@ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class MoltenLeadBlock extends LiquidBlock {
 
@@ -53,7 +51,7 @@ public class MoltenLeadBlock extends LiquidBlock {
     public static final VoxelShape STABLE_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
 
     public MoltenLeadBlock(Supplier<? extends FlowingFluid> fluid, Properties properties) {
-        super(fluid, properties.noCollission().strength(-1.0F, 3600000.0F).noLootTable().lightLevel((state) -> 8));
+        super(fluid.get(), properties.noCollission().strength(-1.0F, 3600000.0F).noLootTable().lightLevel((state) -> 8));
         this.registerDefaultState(this.stateDefinition.any().setValue(MOVING, false));
     }
 
@@ -72,12 +70,10 @@ public class MoltenLeadBlock extends LiquidBlock {
     }
 
     @Nullable
-    @Override
     public BlockPathTypes getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
         return BlockPathTypes.WALKABLE;
     }
 
-    @Override
     public boolean canEntityDestroy( BlockState state , BlockGetter world , BlockPos pos , Entity entity ){
         return false;
     }

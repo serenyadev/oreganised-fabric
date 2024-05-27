@@ -13,7 +13,7 @@ public class ODamageSources {
     public static final ResourceKey<DamageType> LEAD_POISONING = create("lead_poisoning");
 
     public static ResourceKey<DamageType> create(String key) {
-        return ResourceKey.create(Registries.DAMAGE_TYPE, Oreganized.modLoc(key));
+        return ResourceKey.create(Registries.DAMAGE_TYPE, Oreganized.id(key));
     }
 
     public static void bootStrap(BootstapContext<DamageType> context) {

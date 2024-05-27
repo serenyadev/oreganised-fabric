@@ -3,16 +3,16 @@ package galena.oreganized.index;
 import com.mojang.serialization.Codec;
 import galena.oreganized.Oreganized;
 import galena.oreganized.world.gen.structure.BoulderStructure;
+import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
+import io.github.fabricators_of_create.porting_lib.util.RegistryObject;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 
 
 public class OStructures {
 
-    public static final DeferredRegister<StructureType<?>> STRUCTURES = DeferredRegister.create(Registries.STRUCTURE_TYPE, Oreganized.MOD_ID);
+    public static final LazyRegistrar<StructureType<?>> STRUCTURES = LazyRegistrar.create(Registries.STRUCTURE_TYPE, Oreganized.MOD_ID);
 
     public static final RegistryObject<StructureType<BoulderStructure>> BOULDER = STRUCTURES.register("boulder", () -> explicitStructureTypeTyping(BoulderStructure.CODEC));
 

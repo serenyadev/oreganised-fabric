@@ -25,8 +25,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CauldronBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -60,12 +58,11 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
     public static final CauldronInteraction EMPTY_LEAD_BLOCK = (state, world, pos, player, hand, stack) ->
             dropResource(state, world, pos, player, hand, stack, new ItemStack(OBlocks.LEAD_BLOCK.get()), blockState -> state.getValue(AGE).equals(0), SoundEvents.ITEM_FRAME_REMOVE_ITEM);
 
-    public MoltenLeadCauldronBlock(BlockBehaviour.Properties properties) {
+    public MoltenLeadCauldronBlock(Properties properties) {
         super(properties.lightLevel(moltenStageEmission()), INTERACTION_MAP);
         registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
     }
 
-    @Override
     public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
         return new ItemStack(Items.CAULDRON);
     }

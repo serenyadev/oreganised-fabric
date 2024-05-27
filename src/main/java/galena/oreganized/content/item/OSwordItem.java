@@ -1,7 +1,8 @@
 package galena.oreganized.content.item;
 
-import net.minecraft.core.NonNullList;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.ItemLike;
 
 public class OSwordItem extends SwordItem {

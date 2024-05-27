@@ -8,15 +8,11 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.AbstractGlassBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-
-@ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class CrystalGlassBlock extends AbstractGlassBlock implements ICrystalGlass {
 
@@ -24,7 +20,7 @@ public class CrystalGlassBlock extends AbstractGlassBlock implements ICrystalGla
     public static final int NORMAL = 0, ROTATED = 1, INNER = 2, OUTER = 3;
     public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 3);
 
-    public CrystalGlassBlock(DyeColor color, BlockBehaviour.Properties properties) {
+    public CrystalGlassBlock(DyeColor color, Properties properties) {
         super(properties);
         this.color = color;
     }

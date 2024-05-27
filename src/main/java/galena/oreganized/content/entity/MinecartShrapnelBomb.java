@@ -27,9 +27,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.AABB;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 
-@ParametersAreNonnullByDefault
+
 @MethodsReturnNonnullByDefault
 public class MinecartShrapnelBomb extends AbstractMinecart {
     private static final byte EVENT_PRIME = 10;
@@ -44,8 +43,8 @@ public class MinecartShrapnelBomb extends AbstractMinecart {
     }
 
     @Override
-    public AbstractMinecart.Type getMinecartType() {
-        return AbstractMinecart.Type.TNT;
+    public Type getMinecartType() {
+        return Type.TNT;
     }
 
     @Override
@@ -99,7 +98,7 @@ public class MinecartShrapnelBomb extends AbstractMinecart {
     }
 
     @Override
-    protected Item getDropItem() {
+    public Item getDropItem() {
         return OItems.SHRAPNEL_BOMB_MINECART.get();
     }
 

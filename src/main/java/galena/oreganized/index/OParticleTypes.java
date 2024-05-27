@@ -3,22 +3,18 @@ package galena.oreganized.index;
 import galena.oreganized.Oreganized;
 import galena.oreganized.client.particle.CustomDrippingParticle;
 import galena.oreganized.client.particle.LeadShrapnelParticle;
+import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
+import io.github.fabricators_of_create.porting_lib.util.RegistryObject;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.core.registries.Registries;
 
-@Mod.EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class OParticleTypes {
 
-    public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Oreganized.MOD_ID);
+    public static final LazyRegistrar<ParticleType<?>> PARTICLES = LazyRegistrar.create(Registries.PARTICLE_TYPE, Oreganized.MOD_ID);
 
     public static final RegistryObject<SimpleParticleType> DRIPPING_LEAD = PARTICLES.register("dripping_lead", () -> new SimpleParticleType(true));
     public static final RegistryObject<SimpleParticleType> FALLING_LEAD = PARTICLES.register("falling_lead", () -> new SimpleParticleType(true));
@@ -26,13 +22,14 @@ public class OParticleTypes {
     public static final RegistryObject<SimpleParticleType> LEAD_SHRAPNEL = PARTICLES.register( "lead_shrapnel", () -> new SimpleParticleType(true));
 
 
-    @SubscribeEvent
-    public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        ParticleEngine engine = Minecraft.getInstance().particleEngine;
 
-        engine.register(DRIPPING_LEAD.get(), CustomDrippingParticle.LeadHangProvider::new);
-        engine.register(FALLING_LEAD.get(), CustomDrippingParticle.LeadFallProvider::new);
-        engine.register(LANDING_LEAD.get(), CustomDrippingParticle.LeadLandProvider::new);
-        engine.register(LEAD_SHRAPNEL.get(), LeadShrapnelParticle.Provider::new);
+    public static void registerParticleFactories() {
+
+        ParticleFactoryRegistry registry = ParticleFactoryRegistry.getInstance();
+
+        registry.register(DRIPPING_LEAD.get(), CustomDrippingParticle.LeadHangProvider::new);
+        registry.register(FALLING_LEAD.get(), CustomDrippingParticle.LeadFallProvider::new);
+        registry.register(LANDING_LEAD.get(), CustomDrippingParticle.LeadLandProvider::new);
+        registry.register(LEAD_SHRAPNEL.get(), LeadShrapnelParticle.Provider::new);
     }
 }

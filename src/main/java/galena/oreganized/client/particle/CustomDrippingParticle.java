@@ -164,7 +164,7 @@ public class CustomDrippingParticle extends TextureSheetParticle {
         }
 
         public Particle createParticle(SimpleParticleType pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            CustomDrippingParticle.FallAndLandParticle dripparticle = new CustomDrippingParticle.FallAndLandParticle(pLevel, pX, pY, pZ, Fluids.LAVA, OParticleTypes.LANDING_LEAD.get());
+            FallAndLandParticle dripparticle = new FallAndLandParticle(pLevel, pX, pY, pZ, Fluids.LAVA, OParticleTypes.LANDING_LEAD.get());
             dripparticle.setColor(0.35F, 0.24F, 0.43F);
             dripparticle.pickSprite(this.sprite);
             return dripparticle;
@@ -180,7 +180,7 @@ public class CustomDrippingParticle extends TextureSheetParticle {
         }
 
         public Particle createParticle(SimpleParticleType pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            CustomDrippingParticle.CoolingDripHangParticle dripparticle$coolingdriphangparticle = new CustomDrippingParticle.CoolingDripHangParticle(pLevel, pX, pY, pZ, Fluids.LAVA, OParticleTypes.FALLING_LEAD.get());
+            CoolingDripHangParticle dripparticle$coolingdriphangparticle = new CoolingDripHangParticle(pLevel, pX, pY, pZ, Fluids.LAVA, OParticleTypes.FALLING_LEAD.get());
             dripparticle$coolingdriphangparticle.setColor(0.35F, 0.24F, 0.43F);
             dripparticle$coolingdriphangparticle.pickSprite(this.sprite);
             return dripparticle$coolingdriphangparticle;
@@ -196,7 +196,7 @@ public class CustomDrippingParticle extends TextureSheetParticle {
         }
 
         public Particle createParticle(SimpleParticleType pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            CustomDrippingParticle dripparticle = new CustomDrippingParticle.DripLandParticle(pLevel, pX, pY, pZ, Fluids.LAVA);
+            CustomDrippingParticle dripparticle = new DripLandParticle(pLevel, pX, pY, pZ, Fluids.LAVA);
             dripparticle.setColor(0.35F, 0.24F, 0.43F);
             dripparticle.pickSprite(this.sprite);
             return dripparticle;

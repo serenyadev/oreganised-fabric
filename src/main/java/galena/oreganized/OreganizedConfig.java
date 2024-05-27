@@ -5,10 +5,8 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.apache.commons.lang3.tuple.Pair;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class OreganizedConfig {
     public static final Common COMMON;
     public static final Client CLIENT;

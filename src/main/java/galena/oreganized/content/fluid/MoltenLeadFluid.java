@@ -1,6 +1,7 @@
 package galena.oreganized.content.fluid;
 
 import galena.oreganized.index.OParticleTypes;
+import io.github.fabricators_of_create.porting_lib.util.SimpleFlowableFluid;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -9,20 +10,14 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
 
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-
-@ParametersAreNonnullByDefault
-public class MoltenLeadFluid  extends ForgeFlowingFluid {
+public class MoltenLeadFluid  extends SimpleFlowableFluid.Flowing {
 
     public static BooleanProperty MOVING = BooleanProperty.create("moving");
 
@@ -85,7 +80,6 @@ public class MoltenLeadFluid  extends ForgeFlowingFluid {
     }
 
     @Override
-    @Nullable
     public ParticleOptions getDripParticle() {
         return OParticleTypes.DRIPPING_LEAD.get();
     }

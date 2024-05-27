@@ -2,38 +2,28 @@ package galena.oreganized.index;
 
 import com.google.common.collect.ImmutableList;
 import galena.oreganized.Oreganized;
-import galena.oreganized.OreganizedConfig;
-import net.minecraft.core.Holder;
+import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
+import io.github.fabricators_of_create.porting_lib.util.RegistryObject;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
-import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.Mth;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.OreFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-
-import java.util.List;
-import java.util.function.Supplier;
 
 import static net.minecraft.tags.BlockTags.DEEPSLATE_ORE_REPLACEABLES;
 import static net.minecraft.tags.BlockTags.STONE_ORE_REPLACEABLES;
 
 public class OFeatures {
 
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Oreganized.MOD_ID);
+    public static final LazyRegistrar<Feature<?>> FEATURES = LazyRegistrar.create(Registries.FEATURE, Oreganized.MOD_ID);
 
     public static final RegistryObject<Feature<OreConfiguration>> SILVER_ORE = FEATURES.register("silver_ore", () -> new OreFeature(OreConfiguration.CODEC));
     public static final RegistryObject<Feature<OreConfiguration>> SILVER_ORE_EXTRA = FEATURES.register("silver_ore_extra", () -> new OreFeature(OreConfiguration.CODEC));
@@ -49,7 +39,7 @@ public class OFeatures {
         public static final ResourceKey<ConfiguredFeature<?, ?>> LEAD_ORE_EXTRA = create("lead_ore_extra");
 
         public static ResourceKey<ConfiguredFeature<?, ?>> create(String name) {
-            return ResourceKey.create(Registries.CONFIGURED_FEATURE, Oreganized.modLoc(name));
+            return ResourceKey.create(Registries.CONFIGURED_FEATURE, Oreganized.id(name));
         }
 
         public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
@@ -69,7 +59,7 @@ public class OFeatures {
         public static final ResourceKey<PlacedFeature> LEAD_ORE_EXTRA = create("lead_ore_extra");
 
         public static ResourceKey<PlacedFeature> create(String name) {
-            return ResourceKey.create(Registries.PLACED_FEATURE, Oreganized.modLoc(name));
+            return ResourceKey.create(Registries.PLACED_FEATURE, Oreganized.id(name));
         }
         public static void bootstrap(BootstapContext<PlacedFeature> context) {
             HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);

@@ -37,7 +37,7 @@ public class OTrimMaterials {
     public static final ResourceKey<TrimMaterial> ELECTRUM = registerKey("electrum");
 
     private static ResourceKey<TrimMaterial> registerKey(String name) {
-        return ResourceKey.create(Registries.TRIM_MATERIAL, Oreganized.modLoc(name));
+        return ResourceKey.create(Registries.TRIM_MATERIAL, Oreganized.id(name));
     }
 
     public static void bootstrap(BootstapContext<TrimMaterial> context) {

@@ -1,29 +1,15 @@
 package galena.oreganized.index;
 
 import galena.oreganized.Oreganized;
-import galena.oreganized.content.item.BushHammerItem;
-import galena.oreganized.content.item.ElectrumArmorItem;
-import galena.oreganized.content.item.MinecartShrapnelBombItem;
-import galena.oreganized.content.item.OMusicDiscItem;
-import galena.oreganized.content.item.OSmithingTemplateItem;
-import galena.oreganized.content.item.OSwordItem;
-import galena.oreganized.content.item.SilverMirrorItem;
+import galena.oreganized.content.item.*;
+import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
+import io.github.fabricators_of_create.porting_lib.util.RegistryObject;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.HoeItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.RecordItem;
-import net.minecraft.world.item.ShovelItem;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.item.*;
 
 public class OItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Oreganized.MOD_ID);
+    public static final LazyRegistrar<Item> ITEMS = LazyRegistrar.create(Registries.ITEM, Oreganized.MOD_ID);
 
     // Discs
     public static final RegistryObject<RecordItem> MUSIC_DISC_STRUCTURE = ITEMS.register("music_disc_structure", () -> new OMusicDiscItem(13, OSoundEvents.MUSIC_DISC_STRUCTURE, (new Item.Properties()), 2980));
@@ -54,7 +40,7 @@ public class OItems {
     // Misc Tools
     public static final RegistryObject<Item> SILVER_MIRROR = ITEMS.register("silver_mirror", () -> new SilverMirrorItem(new Item.Properties().stacksTo(1)));
     //public static final RegistryObject<Item> BROKEN_SILVER_MIRROR = ITEMS.register("broken_silver_mirror", () -> new OItem(new Item.Properties().stacksTo(16)));
-    public static final RegistryObject<Item> MOLTEN_LEAD_BUCKET = ITEMS.register("molten_lead_bucket", () -> new BucketItem(OFluids.MOLTEN_LEAD, new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
+    public static final RegistryObject<Item> MOLTEN_LEAD_BUCKET = ITEMS.register("molten_lead_bucket", () -> new BucketItem(OFluids.MOLTEN_LEAD.get(), new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
 
     // Armor
     public static final RegistryObject<Item> ELECTRUM_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("electrum_upgrade_smithing_template",

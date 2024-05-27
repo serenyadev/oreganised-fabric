@@ -53,7 +53,7 @@ public interface IMeltableBlock {
     default int getInducedGoopyness(BlockState state, BlockGetter world, BlockPos pos) {
         if (state.is(OTags.Blocks.MELTS_LEAD)) return 2;
         if(state.getBlock() instanceof IMeltableBlock meltable && meltable.getGoopyness(state) == 2) return 1;
-        if (state.getLightEmission(world, pos) >= 15) return 1;
+        if (state.getLightEmission() >= 15) return 1;
         return 0;
     }
 

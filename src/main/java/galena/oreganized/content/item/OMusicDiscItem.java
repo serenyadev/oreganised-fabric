@@ -1,8 +1,10 @@
 package galena.oreganized.content.item;
 
-import net.minecraft.core.NonNullList;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.RecordItem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Supplier;

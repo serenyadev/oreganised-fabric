@@ -1,6 +1,7 @@
 package galena.oreganized.index;
 
 import galena.oreganized.Oreganized;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.entity.EntityType;
@@ -8,7 +9,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.versions.forge.ForgeVersion;
 
 public class OTags {
 
@@ -20,35 +20,35 @@ public class OTags {
         public static final TagKey<Item> LIGHTER_THAN_LEAD = tag("lighter_than_lead");
         public static final TagKey<Item> STONE_TYPES_GLANCE = tag("stone_types/glance");
 
-        public static final TagKey<Item> RAW_MATERIALS_SILVER = forgeTag("raw_materials/silver");
-        public static final TagKey<Item> RAW_MATERIALS_LEAD = forgeTag("raw_materials/lead");
+        public static final TagKey<Item> RAW_MATERIALS_SILVER = commonTag("raw_silver");
+        public static final TagKey<Item> RAW_MATERIALS_LEAD = commonTag("raw_lead");
 
-        public static final TagKey<Item> INGOTS_SILVER = forgeTag("ingots/silver");
-        public static final TagKey<Item> INGOTS_LEAD = forgeTag("ingots/lead");
-        public static final TagKey<Item> INGOTS_ELECTRUM = forgeTag("ingots/electrum");
+        public static final TagKey<Item> INGOTS_SILVER = commonTag("silver_ingots");
+        public static final TagKey<Item> INGOTS_LEAD = commonTag("lead_ingots");
+        public static final TagKey<Item> INGOTS_ELECTRUM = commonTag("electrum_ingots");
 
-        public static final TagKey<Item> NUGGETS_SILVER = forgeTag("nuggets/silver");
-        public static final TagKey<Item> NUGGETS_LEAD = forgeTag("nuggets/lead");
-        public static final TagKey<Item> NUGGETS_ELECTRUM = forgeTag("nuggets/electrum");
-        public static final TagKey<Item> NUGGETS_NETHERITE = forgeTag("nuggets/netherite");
+        public static final TagKey<Item> NUGGETS_SILVER = commonTag("silver_nuggets");
+        public static final TagKey<Item> NUGGETS_LEAD = commonTag("lead_nuggets");
+        public static final TagKey<Item> NUGGETS_ELECTRUM = commonTag("electrum_nuggets");
+        public static final TagKey<Item> NUGGETS_NETHERITE = commonTag("netherite_nuggetss");
 
-        public static final TagKey<Item> ORES_SILVER = forgeTag("ores/silver");
-        public static final TagKey<Item> ORES_LEAD = forgeTag("ores/lead");
+        public static final TagKey<Item> ORES_SILVER = commonTag("silver_ores");
+        public static final TagKey<Item> ORES_LEAD = commonTag("lead_ores");
 
-        public static final TagKey<Item> STORAGE_BLOCKS_SILVER = forgeTag("storage_blocks/silver");
-        public static final TagKey<Item> STORAGE_BLOCKS_LEAD = forgeTag("storage_blocks/lead");
-        public static final TagKey<Item> STORAGE_BLOCKS_ELECTRUM = forgeTag("storage_blocks/electrum");
+        public static final TagKey<Item> STORAGE_BLOCKS_SILVER = commonTag("silver_blocks");
+        public static final TagKey<Item> STORAGE_BLOCKS_LEAD = commonTag("lead_blocks");
+        public static final TagKey<Item> STORAGE_BLOCKS_ELECTRUM = commonTag("electrum_blocks");
 
-        public static final TagKey<Item> STORAGE_BLOCKS_RAW_SILVER = forgeTag("storage_blocks/raw_silver");
-        public static final TagKey<Item> STORAGE_BLOCKS_RAW_LEAD = forgeTag("storage_blocks/raw_lead");
-        public static final TagKey<Item> BUCKETS_MOLTEN_LEAD = forgeTag("buckets/molten_lead");
-        public static final TagKey<Item> TOOLS_BUSH_HAMMER = forgeTag("tools/bush_hammer");
+        public static final TagKey<Item> STORAGE_BLOCKS_RAW_SILVER = commonTag("raw_silver_blocks");
+        public static final TagKey<Item> STORAGE_BLOCKS_RAW_LEAD = commonTag("raw_lead_blocks");
+        public static final TagKey<Item> BUCKETS_MOLTEN_LEAD = commonTag("molten_lead_buckets");
+        public static final TagKey<Item> TOOLS_BUSH_HAMMER = commonTag("tools/bush_hammer");
 
         private static TagKey<Item> tag(String name) {
-            return ItemTags.create(Oreganized.modLoc(name));
+            return TagKey.create(Registries.ITEM, Oreganized.id(name));
         }
-        private static TagKey<Item> forgeTag(String name) {
-            return ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, name));
+        private static TagKey<Item> commonTag(String name) {
+            return TagKey.create(Registries.ITEM, new ResourceLocation("c", name));
         }
     }
 
@@ -62,24 +62,24 @@ public class OTags {
         public static final TagKey<Block> CRYSTAL_GLASS_PANES = tag("crystal_glass_panes");
         public static final TagKey<Block> STONE_TYPES_GLANCE = tag("stone_types/glance");
 
-        public static final TagKey<Block> ORES_SILVER = forgeTag("ores/silver");
-        public static final TagKey<Block> ORES_LEAD = forgeTag("ores/lead");
+        public static final TagKey<Block> ORES_SILVER = commonTag("silver_ores");
+        public static final TagKey<Block> ORES_LEAD = commonTag("lead_ores");
 
-        public static final TagKey<Block> STORAGE_BLOCKS_SILVER = forgeTag("storage_blocks/silver");
-        public static final TagKey<Block> STORAGE_BLOCKS_LEAD = forgeTag("storage_blocks/lead");
-        public static final TagKey<Block> STORAGE_BLOCKS_ELECTRUM = forgeTag("storage_blocks/electrum");
+        public static final TagKey<Block> STORAGE_BLOCKS_SILVER = commonTag("silver_blocks");
+        public static final TagKey<Block> STORAGE_BLOCKS_LEAD = commonTag("lead_blocks");
+        public static final TagKey<Block> STORAGE_BLOCKS_ELECTRUM = commonTag("electrum_blocks");
 
-        public static final TagKey<Block> STORAGE_BLOCKS_RAW_SILVER = forgeTag("storage_blocks/raw_silver");
+        public static final TagKey<Block> STORAGE_BLOCKS_RAW_SILVER = commonTag("raw_silver_blocks");
 
-        public static final TagKey<Block> STORAGE_BLOCKS_RAW_LEAD = forgeTag("storage_blocks/raw_lead");
+        public static final TagKey<Block> STORAGE_BLOCKS_RAW_LEAD = commonTag("raw_lead_blocks");
 
-        public static final TagKey<Block> MELTS_LEAD = forgeTag("melts_lead");
+        public static final TagKey<Block> MELTS_LEAD = commonTag("melts_lead");
 
         private static TagKey<Block> tag(String name) {
-            return BlockTags.create(Oreganized.modLoc(name));
+            return TagKey.create(Registries.BLOCK, Oreganized.id(name));
         }
-        private static TagKey<Block> forgeTag(String name) {
-            return BlockTags.create(new ResourceLocation(ForgeVersion.MOD_ID, name));
+        private static TagKey<Block> commonTag(String name) {
+            return TagKey.create(Registries.BLOCK, new ResourceLocation("c", name));
         }
     }
 
@@ -88,20 +88,20 @@ public class OTags {
         public static final TagKey<EntityType<?>> LIGHTER_THAN_LEAD = tag("lighter_than_lead");
 
         private static TagKey<EntityType<?>> tag(String name) {
-            return EntityTypeTags.create(Oreganized.modLoc(name).toString());
+            return TagKey.create(Registries.ENTITY_TYPE, Oreganized.id(name));
         }
     }
 
     public static class Fluids {
 
-        public static final TagKey<Fluid> MOLTEN_LEAD = forgeTag("molten_lead");
+        public static final TagKey<Fluid> MOLTEN_LEAD = commonTag("molten_lead");
 
         private static TagKey<Fluid> tag(String name) {
-            return FluidTags.create(Oreganized.modLoc(name));
+            return TagKey.create(Registries.FLUID, Oreganized.id(name));
         }
 
-        private static TagKey<Fluid> forgeTag(String name) {
-            return FluidTags.create(new ResourceLocation(ForgeVersion.MOD_ID, name));
+        private static TagKey<Fluid> commonTag(String name) {
+            return TagKey.create(Registries.FLUID, new ResourceLocation("c", name));
         }
     }
 
@@ -111,7 +111,7 @@ public class OTags {
         public static final TagKey<Biome> RICH_IN_LEAD_ORE = tag("rich_in_lead_ore");
 
         private static TagKey<Biome> tag(String name) {
-            return BiomeTags.create(Oreganized.modLoc(name).toString());
+            return TagKey.create(Registries.BIOME, Oreganized.id(name));
         }
     }
 }
