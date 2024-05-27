@@ -4,19 +4,21 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import galena.oreganized.Oreganized;
 import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorModel<T> {
 
-    public static final ModelLayerLocation ELECTRUM_ARMOR = new ModelLayerLocation(Oreganized.modLoc( "electrum_armor"), "main");
+
+    public static final ModelLayerLocation ELECTRUM_ARMOR = new ModelLayerLocation(Oreganized.id( "electrum_armor"), "main");
     private final EquipmentSlot slot;
     private final ModelPart Head;
     private final ModelPart Body;
@@ -27,7 +29,7 @@ public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorMod
     private final ModelPart RightBoot;
     private final ModelPart LeftBoot;
 
-    public ElectrumArmorModel(ModelPart root, EquipmentSlot slot) {
+    public ElectrumArmorModel(ModelPart root, EquipmentSlot slot, HumanoidModel<T> wrapped) {
         super(root);
         this.slot = slot;
         this.Head = root.getChild("Head");

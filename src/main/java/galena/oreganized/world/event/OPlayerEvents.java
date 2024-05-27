@@ -83,7 +83,7 @@ public class OPlayerEvents {
     }
 
 
-    public static void finishUsingItem(LivingEntity entity, ItemStack stack) {
+    public static void onFinishEating(LivingEntity entity, ItemStack stack) {
         if (stack.isEdible()) {
             boolean leadPoisoning = false; // TODO entity.isInFluidType(OFluids.MOLTEN_LEAD_TYPE.get());
             if (entity instanceof Player player) {

@@ -3,9 +3,9 @@ package galena.oreganized.data;
 import galena.oreganized.Oreganized;
 import galena.oreganized.data.provider.OBlockStateProvider;
 import galena.oreganized.index.OBlocks;
+import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class OBlockStates extends OBlockStateProvider {
 

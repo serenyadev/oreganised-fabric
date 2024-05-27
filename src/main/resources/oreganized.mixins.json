@@ -1,10 +1,20 @@
 {
-	"required": true,
-	"package": "company.sappho.mod_id.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-	],
-	"injectors": {
-		"defaultRequire": 1
-	}
+  "required": true,
+  "package": "galena.oreganized.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "galena.oreganized.mixin.OreganizedMixnPlugin",
+  "mixins": [
+    "FluidInteractionMixin",
+    "PlayerEatingMixin",
+    "UnwaxingMixin",
+    "dev.FabricDataGeneratorAccessor",
+    "dev.TagsProviderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "client.HumanoidArmorLayerAccessor",
+    "client.HumanoidArmorLayerMixin"
+  ]
 }

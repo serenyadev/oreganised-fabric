@@ -1,12 +1,9 @@
 package galena.oreganized.data.provider;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import net.minecraft.Util;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.CachedOutput;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.effect.MobEffect;
@@ -18,10 +15,7 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.common.data.LanguageProvider;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.TreeMap;
@@ -81,10 +75,10 @@ public abstract class OLangProvider implements DataProvider {
     }
 
     public void addPotion(Supplier<? extends Potion> potion, String name) {
-        add("item.minecraft.potion.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Potion of " + name);
-        add("item.minecraft.splash_potion.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Splash Potion of " + name);
-        add("item.minecraft.lingering_potion.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Lingering Potion of " + name);
-        add("item.minecraft.tipped_arrow.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Arrow of " + name);
+        add("item.minecraft.potion.effect." + BuiltInRegistries.POTION.getKey(potion.get()).getPath(), "Potion of " + name);
+        add("item.minecraft.splash_potion.effect." + BuiltInRegistries.POTION.getKey(potion.get()).getPath(), "Splash Potion of " + name);
+        add("item.minecraft.lingering_potion.effect." + BuiltInRegistries.POTION.getKey(potion.get()).getPath(), "Lingering Potion of " + name);
+        add("item.minecraft.tipped_arrow.effect." + BuiltInRegistries.POTION.getKey(potion.get()).getPath(), "Arrow of " + name);
     }
 
     public void addDisc(Supplier<? extends RecordItem> disc, String desc) {
@@ -161,25 +155,25 @@ public abstract class OLangProvider implements DataProvider {
 
     public void tryBlock(Supplier<? extends Block> block) {
         String key = block.get().getDescriptionId();
-        String value = formatString(ForgeRegistries.BLOCKS.getKey(block.get()).getPath());
+        String value = formatString(BuiltInRegistries.BLOCK.getKey(block.get()).getPath());
         data.putIfAbsent(key, value);
     }
 
     public void tryItem(Supplier<? extends Item> item) {
         String key = item.get().getDescriptionId();
-        String value = formatString(ForgeRegistries.ITEMS.getKey(item.get()).getPath());
+        String value = formatString(BuiltInRegistries.ITEM.getKey(item.get()).getPath());
         data.putIfAbsent(key, value);
     }
 
     public void tryFluid(Supplier<? extends Fluid> fluid) {
-        String key = Util.makeDescriptionId("fluid", ForgeRegistries.FLUIDS.getKey(fluid.get()));
-        String value = formatString(ForgeRegistries.FLUIDS.getKey(fluid.get()).getPath());
+        String key = Util.makeDescriptionId("fluid", BuiltInRegistries.FLUID.getKey(fluid.get()));
+        String value = formatString(BuiltInRegistries.FLUID.getKey(fluid.get()).getPath());
         data.putIfAbsent(key, value);
     }
 
     public void tryEntity(Supplier<? extends EntityType<?>> entity) {
         String key = entity.get().getDescriptionId();
-        String value = formatString(ForgeRegistries.ENTITY_TYPES.getKey(entity.get()).getPath());
+        String value = formatString(BuiltInRegistries.ENTITY_TYPE.getKey(entity.get()).getPath());
         data.putIfAbsent(key, value);
     }
 

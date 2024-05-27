@@ -2,10 +2,9 @@ package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OSoundEvents;
-import net.minecraft.data.DataGenerator;
+import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
+import io.github.fabricators_of_create.porting_lib.data.SoundDefinitionsProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.common.data.SoundDefinitionsProvider;
 
 public class OSoundDefinitions extends SoundDefinitionsProvider {
 

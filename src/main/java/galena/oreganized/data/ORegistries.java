@@ -4,11 +4,11 @@ import galena.oreganized.Oreganized;
 import galena.oreganized.index.ODamageSources;
 import galena.oreganized.index.OFeatures;
 import galena.oreganized.index.OTrimMaterials;
+import io.github.fabricators_of_create.porting_lib.data.DatapackBuiltinEntriesProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;

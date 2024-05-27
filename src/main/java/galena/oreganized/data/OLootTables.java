@@ -4,6 +4,8 @@ import galena.oreganized.data.provider.OBlockLootProvider;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OItems;
+import io.github.fabricators_of_create.porting_lib.data.ModdedEntityLootSubProvider;
+import io.github.fabricators_of_create.porting_lib.data.ModdedLootTableProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
@@ -22,7 +24,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class OLootTables extends LootTableProvider {
+public class OLootTables extends ModdedLootTableProvider {
 
     public OLootTables(PackOutput output) {
         super(output, Set.of(), List.of(
@@ -37,7 +39,7 @@ public class OLootTables extends LootTableProvider {
 
     public static class Blocks extends OBlockLootProvider {
 
-        protected void generate() {
+        public void generate() {
             //dropNothing(OBlocks.MOLTEN_LEAD);
             cauldron(OBlocks.MOLTEN_LEAD_CAULDRON);
 
@@ -94,7 +96,7 @@ public class OLootTables extends LootTableProvider {
         }
     }
 
-    public static class Entities extends EntityLootSubProvider {
+    public static class Entities extends ModdedEntityLootSubProvider {
 
         public Entities() {
             super(FeatureFlags.REGISTRY.allFlags());

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "O": {
+      "item": "oreganized:glance"
+    },
+    "X": {
+      "tag": "c:lead_ingots"
+    }
+  },
+  "pattern": [
+    " X ",
+    "XOX",
+    " X "
+  ],
+  "result": {
+    "item": "oreganized:spotted_glance"
+  },
+  "show_notification": true
+}

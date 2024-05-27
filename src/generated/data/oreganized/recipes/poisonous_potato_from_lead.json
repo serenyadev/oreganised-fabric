@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "tag": "c:lead_nuggets"
+    },
+    {
+      "tag": "c:lead_nuggets"
+    },
+    {
+      "tag": "c:lead_nuggets"
+    }
+  ],
+  "result": {
+    "item": "minecraft:poisonous_potato"
+  }
+}

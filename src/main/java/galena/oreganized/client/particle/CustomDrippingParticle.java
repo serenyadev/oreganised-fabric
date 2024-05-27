@@ -1,6 +1,8 @@
 package galena.oreganized.client.particle;
 
 import galena.oreganized.index.OParticleTypes;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.BlockPos;
@@ -9,11 +11,9 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class CustomDrippingParticle extends TextureSheetParticle {
     private final Fluid type;
     protected boolean isGlowing;
@@ -70,7 +70,7 @@ public class CustomDrippingParticle extends TextureSheetParticle {
     protected void postMoveUpdate() {
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     static class CoolingDripHangParticle extends DripHangParticle {
         CoolingDripHangParticle(ClientLevel p_106068_, double p_106069_, double p_106070_, double p_106071_, Fluid p_106072_, ParticleOptions p_106073_) {
             super(p_106068_, p_106069_, p_106070_, p_106071_, p_106072_, p_106073_);
@@ -84,7 +84,7 @@ public class CustomDrippingParticle extends TextureSheetParticle {
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     static class DripHangParticle extends CustomDrippingParticle {
         private final ParticleOptions fallingParticle;
 
@@ -110,7 +110,7 @@ public class CustomDrippingParticle extends TextureSheetParticle {
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     static class DripLandParticle extends CustomDrippingParticle{
          DripLandParticle(ClientLevel p_106102_, double p_106103_, double p_106104_, double p_106105_, Fluid p_106106_) {
             super(p_106102_, p_106103_, p_106104_, p_106105_, p_106106_);
@@ -118,7 +118,7 @@ public class CustomDrippingParticle extends TextureSheetParticle {
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     static class FallAndLandParticle extends FallingParticle {
         protected final ParticleOptions landParticle;
 
@@ -136,7 +136,7 @@ public class CustomDrippingParticle extends TextureSheetParticle {
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     static class FallingParticle extends CustomDrippingParticle {
         FallingParticle(ClientLevel p_106132_, double p_106133_, double p_106134_, double p_106135_, Fluid p_106136_) {
             this(p_106132_, p_106133_, p_106134_, p_106135_, p_106136_, (int)(64.0D / (Math.random() * 0.8D + 0.2D)));
@@ -155,7 +155,7 @@ public class CustomDrippingParticle extends TextureSheetParticle {
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public static class LeadFallProvider implements ParticleProvider<SimpleParticleType> {
         protected final SpriteSet sprite;
 
@@ -171,7 +171,7 @@ public class CustomDrippingParticle extends TextureSheetParticle {
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public static class LeadHangProvider implements ParticleProvider<SimpleParticleType> {
         protected final SpriteSet sprite;
 
@@ -187,7 +187,7 @@ public class CustomDrippingParticle extends TextureSheetParticle {
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public static class LeadLandProvider implements ParticleProvider<SimpleParticleType> {
         protected final SpriteSet sprite;
 

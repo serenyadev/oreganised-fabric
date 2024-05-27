@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 
-public class MoltenLeadFluid  extends SimpleFlowableFluid.Flowing {
+public class MoltenLeadFluid  extends SimpleFlowableFluid {
 
     public static BooleanProperty MOVING = BooleanProperty.create("moving");
 

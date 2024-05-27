@@ -4,9 +4,9 @@ import galena.oreganized.Oreganized;
 import galena.oreganized.data.provider.OItemModelProvider;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
+import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Supplier;
 

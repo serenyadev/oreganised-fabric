@@ -1,23 +1,20 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
-import galena.oreganized.index.ODamageSources;
+import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagsProvider;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageType;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class ODamageTags extends TagsProvider<DamageType> {
 
-    public ODamageTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper helper) {
-        super(output, Registries.DAMAGE_TYPE, future, Oreganized.MOD_ID, helper);
+    public ODamageTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future) {
+        super(output, Registries.DAMAGE_TYPE, future);
     }
 
     @Override

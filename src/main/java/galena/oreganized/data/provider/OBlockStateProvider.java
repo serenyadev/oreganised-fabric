@@ -1,37 +1,27 @@
 package galena.oreganized.data.provider;
 
 import galena.oreganized.Oreganized;
-import galena.oreganized.content.block.BulbBlock;
-import galena.oreganized.content.block.CrystalGlassBlock;
-import galena.oreganized.content.block.CrystalGlassPaneBlock;
-import galena.oreganized.content.block.ExposerBlock;
-import galena.oreganized.content.block.IMeltableBlock;
-import galena.oreganized.content.block.MoltenLeadCauldronBlock;
+import galena.oreganized.content.block.*;
+import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
+import io.github.fabricators_of_create.porting_lib.models.generators.ConfiguredModel;
+import io.github.fabricators_of_create.porting_lib.models.generators.ModelFile;
+import io.github.fabricators_of_create.porting_lib.models.generators.ModelProvider;
+import io.github.fabricators_of_create.porting_lib.models.generators.block.BlockModelBuilder;
+import io.github.fabricators_of_create.porting_lib.models.generators.block.BlockStateProvider;
+import io.github.fabricators_of_create.porting_lib.models.generators.block.MultiPartBlockStateBuilder;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.PipeBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.generators.BlockModelBuilder;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.client.model.generators.ModelProvider;
-import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 import static galena.oreganized.Oreganized.MOD_ID;
-import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
+import static io.github.fabricators_of_create.porting_lib.models.generators.ModelProvider.BLOCK_FOLDER;
 
 public abstract class OBlockStateProvider extends BlockStateProvider {
 
@@ -44,7 +34,7 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
     }
 
     protected String name(Block block) {
-        return ForgeRegistries.BLOCKS.getKey(block).getPath();
+        return BuiltInRegistries.BLOCK.getKey(block).getPath();
     }
 
     protected String name(Supplier<? extends Block> block) {
@@ -155,13 +145,13 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(block.get()).partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.NORMAL).modelForState()
                 .modelFile(cubeAll(block.get())).addModel().partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.ROTATED)
                 .modelForState().modelFile(models().cubeAll(name(block) + "_rot",
-                        Oreganized.modLoc("block/" + name(block) + "_rot"))).addModel()
+                        Oreganized.id("block/" + name(block) + "_rot"))).addModel()
                 .partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.INNER)
                 .modelForState().modelFile(models().cubeAll(name(block) + "_in",
-                        Oreganized.modLoc("block/" + name(block) + "_in"))).addModel()
+                        Oreganized.id("block/" + name(block) + "_in"))).addModel()
                 .partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.OUTER)
                 .modelForState().modelFile(models().cubeAll(name(block) + "_out",
-                        Oreganized.modLoc("block/" + name(block) + "_out"))).addModel();
+                        Oreganized.id("block/" + name(block) + "_out"))).addModel();
     }
 
     public void crystalGlassPaneBlock(Supplier<? extends Block> pane, Supplier<? extends Block> fullBlock) {
@@ -174,12 +164,12 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
                 Direction dir = e.getKey();
                 if (dir.getAxis().isHorizontal()) {
                     boolean alt = dir == Direction.SOUTH;
-                    builder.part().modelFile(models().panePost(paneName + "_post" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI)), Oreganized.modLoc("block/" + paneName + "_top"))).addModel().condition(CrystalGlassPaneBlock.TYPE, finalI).end()
-                            .part().modelFile(alt || dir == Direction.WEST ? models().paneSideAlt(paneName + "_side_alt" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI)), Oreganized.modLoc("block/" + paneName + "_top")) :
-                                    models().paneSide(paneName + "_side" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI)), Oreganized.modLoc("block/" + paneName + "_top"))).rotationY(dir.getAxis() == Direction.Axis.X ? 90 : 0).addModel()
+                    builder.part().modelFile(models().panePost(paneName + "_post" + suffixByIndex(finalI), Oreganized.id("block/" + baseName + suffixByIndex(finalI)), Oreganized.id("block/" + paneName + "_top"))).addModel().condition(CrystalGlassPaneBlock.TYPE, finalI).end()
+                            .part().modelFile(alt || dir == Direction.WEST ? models().paneSideAlt(paneName + "_side_alt" + suffixByIndex(finalI), Oreganized.id("block/" + baseName + suffixByIndex(finalI)), Oreganized.id("block/" + paneName + "_top")) :
+                                    models().paneSide(paneName + "_side" + suffixByIndex(finalI), Oreganized.id("block/" + baseName + suffixByIndex(finalI)), Oreganized.id("block/" + paneName + "_top"))).rotationY(dir.getAxis() == Direction.Axis.X ? 90 : 0).addModel()
                             .condition(e.getValue(), true).condition(CrystalGlassPaneBlock.TYPE, finalI).end()
-                            .part().modelFile(alt || dir == Direction.EAST ? models().paneNoSideAlt(paneName + "_noside_alt" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI))) :
-                                    models().paneNoSide(paneName + "_noside" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI)))).rotationY(dir == Direction.WEST ? 270 : dir == Direction.SOUTH ? 90 : 0).addModel()
+                            .part().modelFile(alt || dir == Direction.EAST ? models().paneNoSideAlt(paneName + "_noside_alt" + suffixByIndex(finalI), Oreganized.id("block/" + baseName + suffixByIndex(finalI))) :
+                                    models().paneNoSide(paneName + "_noside" + suffixByIndex(finalI), Oreganized.id("block/" + baseName + suffixByIndex(finalI)))).rotationY(dir == Direction.WEST ? 270 : dir == Direction.SOUTH ? 90 : 0).addModel()
                             .condition(e.getValue(), false).condition(CrystalGlassPaneBlock.TYPE, finalI);
                 }
             });

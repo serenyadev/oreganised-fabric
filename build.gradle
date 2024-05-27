@@ -5,10 +5,8 @@ plugins {
 
 version = project.mod_version
 group = project.maven_group
-var modules = ['accessors', 'base', 'blocks', 'client_events', 'common', 'core', 'data', 'entity', 'extensions', 'fluids',
-           'gui_utils', 'items', 'lazy_registration', 'level_events', 'loot', 'model_builders', 'model_loader',
-			'model_materials', 'models', 'networking', 'obj_loader', 'recipe_book_categories', 'registries', 'tags', 'transfer',
-		   'utility']
+var modules = ['base', 'client_events', 'common', 'core', 'data', 'extensions', 'fluids',
+            'lazy_registration', 'level_events', 'loot', 'model_builders', 'tags']
 
 base {
 	archivesName = project.archives_base_name
@@ -16,6 +14,29 @@ base {
 
 loom {
 	accessWidenerPath = project.file("src/main/resources/oreganized.accesswidener")
+	runs {
+		datagen {
+			inherit client
+			name "Data Generation"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/generated")}"
+			vmArg "-Dfabric-api.datagen.modid=oreganized"
+			vmArg "-Dporting_lib.datagen.existing_resources=${file("src/main/resources")}"
+
+			runDir "build/datagen"
+		}
+	}
+}
+
+sourceSets {
+	main {
+		resources {
+			srcDirs += [
+					'src/generated'
+			]
+			exclude ".cache/**"
+		}
+	}
 }
 
 repositories {
@@ -49,7 +70,9 @@ repositories {
 }
 
 fabricApi {
-	configureDataGeneration()
+	configureDataGeneration() {
+		it.createRunConfiguration = false
+	}
 }
 
 dependencies {

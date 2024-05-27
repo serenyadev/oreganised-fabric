@@ -3,6 +3,7 @@ package galena.oreganized.index;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
 import galena.oreganized.Oreganized;
+import galena.oreganized.content.block.MoltenLeadBlock;
 import galena.oreganized.content.fluid.MoltenLeadFluid;
 import io.github.fabricators_of_create.porting_lib.fluids.FluidType;
 import io.github.fabricators_of_create.porting_lib.fluids.PortingLibFluids;
@@ -44,17 +45,17 @@ public class OFluids {
 //                    consumer.accept(new IClientFluidTypeExtensions() {
 //                        @Override
 //                        public ResourceLocation getStillTexture() {
-//                            return Oreganized.modLoc("block/fluid/molten_lead");
+//                            return Oreganized.id("block/fluid/molten_lead");
 //                        }
 //
 //                        @Override
 //                        public ResourceLocation getFlowingTexture() {
-//                            return Oreganized.modLoc("block/fluid/molten_lead_flowing");
+//                            return Oreganized.id("block/fluid/molten_lead_flowing");
 //                        }
 //
 //                        @Override
 //                        public ResourceLocation getOverlayTexture() {
-//                            return Oreganized.modLoc("block/fluid/molten_lead_flowing");
+//                            return Oreganized.id("block/fluid/molten_lead_flowing");
 //                        }
 //
 //                        @Override
@@ -70,7 +71,7 @@ public class OFluids {
 //                    });
 
     });
-    public static final RegistryObject<FlowingFluid> MOLTEN_LEAD = FLUIDS.register("molten_lead", () -> new MoltenLeadFluid(OFluids.MOLTEN_LEAD_PROPERTIES));
+    public static final RegistryObject<MoltenLeadFluid> MOLTEN_LEAD = FLUIDS.register("molten_lead", () -> new MoltenLeadFluid(OFluids.MOLTEN_LEAD_PROPERTIES));
 
     public static final SimpleFlowableFluid.Properties MOLTEN_LEAD_PROPERTIES = new SimpleFlowableFluid.Properties(MOLTEN_LEAD, MOLTEN_LEAD).bucket(OItems.MOLTEN_LEAD_BUCKET).block(OBlocks.MOLTEN_LEAD);
 }

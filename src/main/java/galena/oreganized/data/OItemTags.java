@@ -3,6 +3,9 @@ package galena.oreganized.data;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
+import io.github.fabricators_of_create.porting_lib.data.PortingLibItemTagsProvider;
+import io.github.fabricators_of_create.porting_lib.tags.Tags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -10,19 +13,15 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
-
-import javax.annotation.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
 import static galena.oreganized.index.OTags.Items.*;
 
-public class OItemTags extends ItemTagsProvider {
+public class OItemTags extends PortingLibItemTagsProvider {
 
-    public OItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, CompletableFuture<TagLookup<Block>> provider, @Nullable ExistingFileHelper helper) {
-        super(output, future, provider, Oreganized.MOD_ID, helper);
+    public OItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, CompletableFuture<TagLookup<Block>> provider) {
+        super(output, future, provider, Oreganized.MOD_ID);
     }
 
     @Override
@@ -34,7 +33,7 @@ public class OItemTags extends ItemTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         // Oreganized
         tag(LEAD_SOURCE).addTags(INGOTS_LEAD, NUGGETS_LEAD, ORES_LEAD).add(
-                OItems.BUSH_HAMMER.get(), OItems.MOLTEN_LEAD_BUCKET.get()
+                OItems.BUSH_HAMMER.getKey(), OItems.MOLTEN_LEAD_BUCKET.getKey()
         );
         copy(OTags.Blocks.CRYSTAL_GLASS, CRYSTAL_GLASS);
         copy(OTags.Blocks.CRYSTAL_GLASS_PANES, CRYSTAL_GLASS_PANES);

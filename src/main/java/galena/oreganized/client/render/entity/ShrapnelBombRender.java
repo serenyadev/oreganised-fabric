@@ -37,7 +37,7 @@ public class ShrapnelBombRender extends EntityRenderer<ShrapnelBomb> {
         poseStack.mulPose(Axis.YP.rotationDegrees(-90.0F));
         poseStack.translate(-0.5D, -0.5D, 0.5D);
         poseStack.mulPose(Axis.YP.rotationDegrees(90.0F));
-        TntMinecartRenderer.renderWhiteSolidBlock(this.blockRenderer, OBlocks.SHRAPNEL_BOMB.get().defaultBlockState(), poseStack, buffer, packedLight, fuse / 5 % 2 == 0);
+        ShrapnelBombMinecartRender.renderWhiteSolidBlock(this.blockRenderer, OBlocks.SHRAPNEL_BOMB.get().defaultBlockState(), poseStack, buffer, packedLight, fuse / 5 % 2 == 0);
         poseStack.popPose();
         super.render(entity, yaw, paritalTicks, poseStack, buffer, packedLight);
     }

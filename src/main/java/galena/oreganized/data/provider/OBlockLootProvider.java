@@ -1,5 +1,6 @@
 package galena.oreganized.data.provider;
 
+import io.github.fabricators_of_create.porting_lib.data.ModdedBlockLootSubProvider;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -15,7 +16,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.Set;
 import java.util.function.Supplier;
 
-public abstract class OBlockLootProvider extends BlockLootSubProvider {
+public abstract class OBlockLootProvider extends ModdedBlockLootSubProvider {
 
     protected OBlockLootProvider() {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags());

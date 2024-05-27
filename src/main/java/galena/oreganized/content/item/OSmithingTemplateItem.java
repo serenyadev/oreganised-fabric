@@ -12,13 +12,13 @@ import java.util.List;
 public class OSmithingTemplateItem extends SmithingTemplateItem {
     private static final ChatFormatting TITLE_FORMAT = ChatFormatting.GRAY;
     private static final ChatFormatting DESCRIPTION_FORMAT = ChatFormatting.BLUE;
-    private static final Component ELECTRUM_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", Oreganized.modLoc("electrum_upgrade"))).withStyle(TITLE_FORMAT);
+    private static final Component ELECTRUM_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", Oreganized.id("electrum_upgrade"))).withStyle(TITLE_FORMAT);
 
 
-    private static final Component ELECTRUM_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId("item", Oreganized.modLoc("smithing_template.electrum_upgrade.applies_to"))).withStyle(DESCRIPTION_FORMAT);
-    private static final Component ELECTRUM_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", Oreganized.modLoc("smithing_template.electrum_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
-    private static final Component ELECTRUM_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", Oreganized.modLoc("smithing_template.electrum_upgrade.base_slot_description")));
-    private static final Component ELECTRUM_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", Oreganized.modLoc("smithing_template.electrum_upgrade.additions_slot_description")));
+    private static final Component ELECTRUM_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId("item", Oreganized.id("smithing_template.electrum_upgrade.applies_to"))).withStyle(DESCRIPTION_FORMAT);
+    private static final Component ELECTRUM_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", Oreganized.id("smithing_template.electrum_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
+    private static final Component ELECTRUM_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", Oreganized.id("smithing_template.electrum_upgrade.base_slot_description")));
+    private static final Component ELECTRUM_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", Oreganized.id("smithing_template.electrum_upgrade.additions_slot_description")));
     private static final ResourceLocation EMPTY_SLOT_HELMET = new ResourceLocation("item/empty_armor_slot_helmet");
     private static final ResourceLocation EMPTY_SLOT_CHESTPLATE = new ResourceLocation("item/empty_armor_slot_chestplate");
     private static final ResourceLocation EMPTY_SLOT_LEGGINGS = new ResourceLocation("item/empty_armor_slot_leggings");

@@ -1,10 +1,56 @@
 package galena.oreganized.client;
 
+import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
+import galena.oreganized.client.render.entity.ShrapnelBombRender;
+import galena.oreganized.client.render.gui.OGui;
+import galena.oreganized.index.OBlocks;
+import galena.oreganized.index.OEntityTypes;
+import galena.oreganized.index.OItems;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+
+import java.util.function.Supplier;
 
 public class OreganizedClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        OGui.registerEvents();
+        registerBlockRenderers();
+        registerEntityRenderers();
 
+        ItemProperties.register(OItems.SILVER_MIRROR.get(), new ResourceLocation("level"), (stack, world, entity, seed) -> {
+            if (entity == null) {
+                return 8;
+            } else {
+                return stack.getOrCreateTag().getInt("Level");
+            }
+        });
+    }
+
+    private static void render(Supplier<? extends Block> block, RenderType render) {
+        BlockRenderLayerMap.INSTANCE.putBlock(block.get(), render);
+    }
+
+    public static void registerBlockRenderers() {
+        RenderType cutout = RenderType.cutout();
+        RenderType mipped = RenderType.cutoutMipped();
+        RenderType translucent = RenderType.translucent();
+
+        for (int i = 0; OBlocks.CRYSTAL_GLASS.size() > i; i++) {
+            render(OBlocks.CRYSTAL_GLASS.get(i), translucent);
+            render(OBlocks.CRYSTAL_GLASS_PANES.get(i), translucent);
+        }
+    }
+
+
+    public static void registerEntityRenderers() {
+        EntityRendererRegistry.register(OEntityTypes.SHRAPNEL_BOMB.get(), ShrapnelBombRender::new);
+        EntityRendererRegistry.register(OEntityTypes.SHRAPNEL_BOMB_MINECART.get(), ShrapnelBombMinecartRender::new);
     }
 }

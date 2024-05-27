@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "tag": "c:lead_ingots"
+    },
+    "B": {
+      "tag": "c:wooden_rods"
+    }
+  },
+  "pattern": [
+    "AA",
+    "B "
+  ],
+  "result": {
+    "item": "oreganized:bush_hammer"
+  },
+  "show_notification": true
+}

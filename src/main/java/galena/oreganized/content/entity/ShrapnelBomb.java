@@ -4,12 +4,14 @@ import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.OEffects;
 import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OParticleTypes;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -34,7 +36,35 @@ public class ShrapnelBomb extends PrimedTnt {
         this.owner = igniterEntity;
     }
 
-    protected void explode() {
+    @Override
+    public void tick() {
+        if (!this.isNoGravity()) {
+            this.setDeltaMovement(this.getDeltaMovement().add(0.0, -0.04, 0.0));
+        }
+
+        this.move(MoverType.SELF, this.getDeltaMovement());
+        this.setDeltaMovement(this.getDeltaMovement().scale(0.98));
+        if (this.onGround()) {
+            this.setDeltaMovement(this.getDeltaMovement().multiply(0.7, -0.5, 0.7));
+        }
+
+        int i = this.getFuse() - 1;
+        this.setFuse(i);
+        if (i <= 0) {
+            this.discard();
+            if (!this.level().isClientSide) {
+                this.explode();
+            }
+        } else {
+            this.updateInWaterStateAndDoFluidPushing();
+            if (this.level().isClientSide) {
+                this.level().addParticle(ParticleTypes.SMOKE, this.getX(), this.getY() + 0.5, this.getZ(), 0.0, 0.0, 0.0);
+            }
+        }
+
+    }
+
+    public void explode() {
         this.level().explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 4.0F, Level.ExplosionInteraction.NONE);
         if (!this.level().isClientSide()) ((ServerLevel)this.level()).sendParticles(OParticleTypes.LEAD_SHRAPNEL.get(),
                 this.getX(), this.getY(0.0625D) , this.getZ(), 100, 0.0D, 0.0D, 0.0D, 5);

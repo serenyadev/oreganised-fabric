@@ -2,17 +2,18 @@
 	"schemaVersion": 1,
 	"id": "oreganized",
 	"version": "${version}",
-	"name": "Mod Name",
-	"description": "Fabric mod template for The Sappho Company",
+	"name": "Oreganized",
+	"description": "Oreganized is a mod focusing on adding new ores and metals to Minecraft. Currently it adds, Lead and Silver as base metals and a new alloy known as Electrum.\n\nThis mod is designed to be a Vanilla plus mod while also adding unique uses and abilities to its content rather than just meaningless toolsets for a more engaging experience that tries to match the quality of Mojang's own implementations of new content.",
 	"authors": [
-		"The Sappho Company"
+		"Xaidee as part of Team Galena (Original)",
+		"Serenity (Fabric port)"
 	],
 	"contact": {
 		"homepage": "https://codeberg.org/sappho",
 		"sources": "https://codeberg.org/sappho/FabricExampleMod"
 	},
 	"license": "LGPL-3.0-only",
-	"icon": "assets/mod_id/icon.png",
+	"icon": "assets/oreganized/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -22,7 +23,7 @@
 			"galena.oreganized.client.OreganizedClient"
 		],
 		"fabric-datagen": [
-          "galena.oreganized.datagen.ModIDDatagen"
+			"galena.oreganized.data.OreganizedData"
 		]
 	},
 	"mixins": [

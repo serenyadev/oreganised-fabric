@@ -5,3 +5,4 @@ accessible method net/minecraft/data/worldgen/placement/OrePlacements commonOreP
 accessible method net/minecraft/world/entity/vehicle/AbstractMinecart getDropItem ()Lnet/minecraft/world/item/Item;
 
 accessible field net/minecraft/world/entity/item/PrimedTnt owner Lnet/minecraft/world/entity/LivingEntity;
+accessible field net/minecraft/world/item/ArmorItem ARMOR_MODIFIER_UUID_PER_TYPE Ljava/util/EnumMap;

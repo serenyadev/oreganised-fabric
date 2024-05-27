@@ -5,6 +5,8 @@ import com.google.common.collect.Multimap;
 import galena.oreganized.Oreganized;
 import galena.oreganized.client.model.ElectrumArmorModel;
 import galena.oreganized.index.OArmorMaterials;
+import galena.oreganized.utils.CustomModelArmor;
+import io.github.fabricators_of_create.porting_lib.item.ArmorTextureItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,15 +16,13 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.UUID;
-import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-public class ElectrumArmorItem extends ArmorItem {
+public class ElectrumArmorItem extends ArmorItem implements CustomModelArmor {
     private static final String TEXTURE = Oreganized.MOD_ID + ":textures/entity/electrum_armor.png";
 
     public ElectrumArmorItem(Type slot) {
@@ -31,7 +31,7 @@ public class ElectrumArmorItem extends ArmorItem {
 
 
     @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+    public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot slot) {
         if(slot == this.getEquipmentSlot()) {
             UUID uuid = ARMOR_MODIFIER_UUID_PER_TYPE.get(this.getType());
             return ImmutableMultimap.of(
@@ -44,20 +44,15 @@ public class ElectrumArmorItem extends ArmorItem {
         return super.getDefaultAttributeModifiers(slot);
     }
 
-    @Nullable
+
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
         return TEXTURE;
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
-            @Override
-            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
-                return new ElectrumArmorModel<>(ElectrumArmorModel.createBodyLayer().bakeRoot(), armorSlot);
-            }
-        });
+    public Supplier<HumanoidModel<?>> getHumanoidArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, Supplier<HumanoidModel<?>> _default) {
+        return () -> new ElectrumArmorModel<>(ElectrumArmorModel.createBodyLayer().bakeRoot(), armorSlot, _default.get());
     }
+
 }

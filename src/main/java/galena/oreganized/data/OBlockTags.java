@@ -2,6 +2,8 @@ package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OBlocks;
+import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
+import io.github.fabricators_of_create.porting_lib.tags.Tags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -9,30 +11,16 @@ import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
 
-import static galena.oreganized.index.OTags.Blocks.CRYSTAL_GLASS;
-import static galena.oreganized.index.OTags.Blocks.CRYSTAL_GLASS_PANES;
-import static galena.oreganized.index.OTags.Blocks.FIRE_SOURCE;
-import static galena.oreganized.index.OTags.Blocks.MELTS_LEAD;
-import static galena.oreganized.index.OTags.Blocks.ORES_LEAD;
-import static galena.oreganized.index.OTags.Blocks.ORES_SILVER;
-import static galena.oreganized.index.OTags.Blocks.STONE_TYPES_GLANCE;
-import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_ELECTRUM;
-import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_LEAD;
-import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_RAW_LEAD;
-import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_RAW_SILVER;
-import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_SILVER;
+import static galena.oreganized.index.OTags.Blocks.*;
 
 public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
 
-    public OBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper helper) {
-        super(output, Registries.BLOCK, future, block -> block.builtInRegistryHolder().key(), Oreganized.MOD_ID, helper);
+    public OBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future) {
+        super(output, Registries.BLOCK, future, block -> block.builtInRegistryHolder().key());
     }
 
     @Override
