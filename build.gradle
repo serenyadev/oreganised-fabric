@@ -1,184 +1,82 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: "${forgegradle_version}", changing: true
-        classpath "org.spongepowered:mixingradle:${mixingradle_version}"
-    }
+plugins {
+	id 'fabric-loom' version '1.5-SNAPSHOT'
+	id 'maven-publish'
 }
 
-apply plugin: 'java'
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
-apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'maven-publish'
+version = project.mod_version
+group = project.maven_group
 
-archivesBaseName = "${mod_name} ${minecraft_version}"
-
-mixin {
-    add sourceSets.main, "${mod_id}.refmap.json"
-
-    config "${mod_id}.mixins.json"
+base {
+	archivesName = project.archives_base_name
 }
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
-minecraft {
-    mappings channel: 'official', version: minecraft_version
-
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
-    runs {
-        client {
-            taskName 'Client'
-        }
-
-        server {
-            taskName 'Server'
-        }
-
-        data {
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-            taskName 'Data'
-        }
-
-        forEach {
-            it.workingDirectory project.file('run')
-            it.ideaModule "${rootProject.name}.main"
-            it.args "-mixin.config=${mod_id}.mixins.json"
-            it.mods {
-                create(mod_id) {
-                    source sourceSets.main
-                }
-            }
-        }
-    }
-}
-
-sourceSets.main.resources.srcDir 'src/generated/resources'
 
 repositories {
-    maven {
-        // location of the maven that hosts JEI files
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        // location of a maven mirror for JEI files, as a fallback
-        name = "ModMaven"
-        url = "https://modmaven.dev"
-    }
-    maven {
-        name = "Curse Maven"
-        url = "https://www.cursemaven.com"
-        content {
-            includeGroup("curse.maven")
-        }
-    }
-    maven {
-        url = "https://api.modrinth.com/maven"
-        content {
-            includeGroup("maven.modrinth")
-        }
-    }
+	maven {
+		name = 'ParchmentMC'
+		url = 'https://maven.parchmentmc.org'
+	}
+	maven {
+		name = 'Quilt'
+		url = "https://maven.quiltmc.org/repository/release/"
+	}
+}
+
+fabricApi {
+	configureDataGeneration()
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.layered() {
+		mappings("org.quiltmc:quilt-mappings:${project.minecraft_version}+build.${project.qm_version}:intermediary-v2")
+		parchment("org.parchmentmc.data:parchment-${project.parchment_version}@zip")
+		officialMojangMappings()
+	}
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Compatibilities
-    runtimeOnly(fg.deobf("maven.modrinth:create:${create_version}"))
+	// Dependencies
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+}
 
-    // For dev testing
-    runtimeOnly(fg.deobf("maven.modrinth:scannable:${scannable_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:architectury-api:${architectury_version}"))
+processResources {
+	inputs.property "version", project.version
 
-   /* implementation fg.deobf("curse.maven:detailab-520755:${detailab_version}")
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
 
-    compileOnly fg.deobf("curse.maven:farmers-delight-398521:${farmersdelight_version}")
-    runtimeOnly fg.deobf("curse.maven:farmers-delight-398521:${farmersdelight_version}")
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 17
+}
 
-    compileOnly fg.deobf("curse.maven:shield-expansion-583318:${shieldexpansion_version}")
-    runtimeOnly fg.deobf("curse.maven:shield-expansion-583318:${shieldexpansion_version}")
+java {
+	withSourcesJar()
 
-    compileOnly fg.deobf("curse.maven:nethers-delight-496394:${nethersdelight_version}")
-    runtimeOnly fg.deobf("curse.maven:nethers-delight-496394:${nethersdelight_version}")
-
-    compileOnly fg.deobf("curse.maven:quark-243121:${quark_verion}")
-    runtimeOnly fg.deobf("curse.maven:quark-243121:${quark_verion}")
-    runtimeOnly fg.deobf("curse.maven:autoreglib-250363:${autoreglib_version}")
-
-    compileOnly fg.deobf("curse.maven:modest-mining-533775:${modestmining_version}")
-    runtimeOnly fg.deobf("curse.maven:modest-mining-533775:${modestmining_version}")
-    runtimeOnly fg.deobf("curse.maven:geckolib-388172:${geckolib_version}")
-*/
-
-
-    /*
-        If 'Data' fails to run try comment out the below dependencies
-     */
-    //runtimeOnly fg.deobf("curse.maven:supplementaries-412082:${supplementaries_version}")
-    //runtimeOnly fg.deobf("curse.maven:selene-499980:${selene_version}")
-    ///
-
-    /// Utilities for the development environment
-    //runtimeOnly fg.deobf("curse.maven:jade-324717:${jade_version}")
-    // compile against the JEI API but do not include it at runtime
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
-    // at runtime, use the full JEI jar for Forge
-    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
-
-    //runtimeOnly fg.deobf("curse.maven:catalogue-459701:${catalogue_version}")
-    //runtimeOnly fg.deobf("curse.maven:configured-457570:${configured_version}")
-
-    //runtimeOnly fg.deobf("curse.maven:oculus-581495:${oculus_version}")
-    //runtimeOnly fg.deobf("curse.maven:rubidium-574856:${rubidium_version}")
-    ///
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
-    manifest {
-        attributes([
-                'Specification-Title'     : mod_name,
-                'Specification-Vendor'    : mod_author,
-                'Specification-Version'   : project.jar.archiveVersion,
-                'Implementation-Title'    : project.name,
-                'Implementation-Version'  : project.jar.archiveVersion,
-                'Implementation-Vendor'   : mod_author,
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                'Timestampe'              : System.currentTimeMillis(),
-                'Built-On-Java'           : "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
-                'Build-On-Minecraft'      : minecraft_version
-        ])
-    }
+	from("LICENSE") {
+		rename { "${it}_${project.base.archivesName.get()}"}
+	}
 }
-
-jar.finalizedBy('reobfJar')
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId project.group
-            artifactId project.archivesBaseName
-            version project.version
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file://" + System.getenv("local_maven")
-        }
-    }
-}
-
-// Disables Gradle's custom module metadata from being published to maven. The
-// metadata includes mapped dependencies which are not reasonably consumable by
-// other mod developers.
-tasks.withType(GenerateModuleMetadata) {
-    enabled = false
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+		maven {
+			name "sapphoCompany"
+			url "https://maven.is-immensely.gay/nightly"
+			credentials(org.gradle.api.credentials.PasswordCredentials)
+			authentication {
+				basic(BasicAuthentication)
+			}
+		}
+	}
 }
