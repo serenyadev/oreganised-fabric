@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#c:silver_nuggets",
+    "#c:lead_nuggets",
+    "#c:electrum_nuggets",
+    "#c:netherite_nuggetss"
+  ]
+}

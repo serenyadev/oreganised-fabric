@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "oreganized:polished_glance",
+    "oreganized:glance_bricks",
+    "oreganized:chiseled_glance",
+    "oreganized:glance_brick_stairs",
+    "oreganized:glance_brick_wall"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#c:lead_ingots",
+    "#c:lead_nuggets",
+    "#c:lead_ores",
+    "oreganized:bush_hammer",
+    "oreganized:molten_lead_bucket"
+  ]
+}

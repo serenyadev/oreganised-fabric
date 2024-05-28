@@ -21,7 +21,6 @@ public class OreganizedData implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = generator.createPack();
 
 		pack.addProvider(OBiomeTags::new);
-		pack.addProvider(OBlockTags::new);
 		pack.addProvider(OEntityTags::new);
 		pack.addProvider(ODamageTags::new);
 		pack.addProvider(providerWithHelper2(OFluidTags::new, helper));
@@ -34,6 +33,9 @@ public class OreganizedData implements DataGeneratorEntrypoint {
 		pack.addProvider(OPaintingVariantTags::new);
 		pack.addProvider(providerWithHelper(OBlockStates::new, helper));
 		pack.addProvider(providerWithHelper(OItemModels::new, helper));
+		
+		OBlockTags blockTags = pack.addProvider(OBlockTags::new);
+		pack.addProvider((output, registriesFuture) -> new OItemTags(output, registriesFuture, blockTags.contentsGetter()));
 
 	}
 

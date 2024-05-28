@@ -2,9 +2,7 @@ package galena.oreganized.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import galena.oreganized.index.OItems;
 import galena.oreganized.utils.CustomModelArmor;
-import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -45,11 +43,10 @@ public abstract class HumanoidArmorLayerMixin {
         Item item = itemStack.getItem();
         if (item instanceof ArmorItem armorItem && item instanceof CustomModelArmor custom) {
             if (armorItem.getEquipmentSlot() == slot) {
-                ((HumanoidModel) self.getParentModel()).copyPropertiesTo(model);
                 this.setPartVisibility(model, slot);
                 boolean bl = this.usesInnerModel(slot);
 
-                HumanoidModel<?> customModel = custom.getHumanoidArmorModel(entity, itemStack, slot, () -> model).get();
+                HumanoidModel<?> customModel = custom.getModelProvider().get().accept(entity, itemStack, slot, model);
                 ((HumanoidModel) self.getParentModel()).copyPropertiesTo(customModel);
 
                 oreganized$renderCustomModel(poseStack, buffer, packedLight, ResourceLocation.tryParse(custom.getArmorTexture(itemStack, entity, slot, null)), customModel, 1.0F, 1.0F, 1.0F);

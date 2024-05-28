@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing",
   "addition": {
-    "tag": "forge:ingots/electrum"
+    "tag": "c:electrum_ingots"
   },
   "base": {
     "item": "farmersdelight:diamond_knife"

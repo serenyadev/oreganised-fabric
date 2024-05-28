@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#c:silver_ingots",
+    "#c:lead_ingots",
+    "#c:electrum_ingots"
+  ]
+}

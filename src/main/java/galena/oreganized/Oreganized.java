@@ -6,8 +6,10 @@ import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
 import galena.oreganized.content.effect.StunningEffect;
 import galena.oreganized.index.*;
+import galena.oreganized.utils.FluidInteractionRegistry;
 import galena.oreganized.world.AddItemLootModifier;
 import galena.oreganized.world.event.OPlayerEvents;
+import io.github.fabricators_of_create.porting_lib.fluids.PortingLibFluids;
 import io.github.fabricators_of_create.porting_lib.loot.IGlobalLootModifier;
 import io.github.fabricators_of_create.porting_lib.loot.PortingLibLoot;
 import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
@@ -61,6 +63,11 @@ public class Oreganized implements ModInitializer {
 		for (LazyRegistrar<?> register : registers) {
 			register.register();
 		}
+
+		FluidInteractionRegistry.addInteraction(OFluids.MOLTEN_LEAD_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+				PortingLibFluids.WATER_TYPE,
+				fluidState -> OBlocks.LEAD_BLOCK.get().defaultBlockState()
+		));
 
 		ForgeConfigRegistry.INSTANCE.register(MOD_ID, ModConfig.Type.COMMON, OreganizedConfig.COMMON_SPEC);
 

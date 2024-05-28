@@ -2,7 +2,7 @@
   "type": "create:compacting",
   "ingredients": [
     {
-      "fluidTag": "forge:molten_lead",
+      "fluidTag": "c:molten_lead",
       "amount": 1000
     }
   ],

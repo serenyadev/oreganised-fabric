@@ -5,7 +5,7 @@
       "item": "oreganized:glance"
     },
     {
-      "fluidTag": "forge:molten_lead",
+      "fluidTag": "c:molten_lead",
       "amount": 250
     }
   ],

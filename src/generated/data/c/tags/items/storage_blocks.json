@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#c:silver_blocks",
+    "#c:lead_blocks",
+    "#c:electrum_blocks"
+  ]
+}

@@ -13,6 +13,10 @@ import java.util.function.Supplier;
 public interface CustomModelArmor extends ArmorTextureItem {
 
     @Environment(EnvType.CLIENT)
-    Supplier<HumanoidModel<?>> getHumanoidArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, Supplier<HumanoidModel<?>> _default);
+    Supplier<ArmorModelProvider> getModelProvider();
+
+    interface ArmorModelProvider {
+        HumanoidModel<?> accept(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> original);
+    }
 
 }

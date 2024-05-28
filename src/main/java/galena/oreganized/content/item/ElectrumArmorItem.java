@@ -7,6 +7,8 @@ import galena.oreganized.client.model.ElectrumArmorModel;
 import galena.oreganized.index.OArmorMaterials;
 import galena.oreganized.utils.CustomModelArmor;
 import io.github.fabricators_of_create.porting_lib.item.ArmorTextureItem;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -51,8 +53,8 @@ public class ElectrumArmorItem extends ArmorItem implements CustomModelArmor {
     }
 
     @Override
-    public Supplier<HumanoidModel<?>> getHumanoidArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, Supplier<HumanoidModel<?>> _default) {
-        return () -> new ElectrumArmorModel<>(ElectrumArmorModel.createBodyLayer().bakeRoot(), armorSlot, _default.get());
+    @Environment(EnvType.CLIENT)
+    public Supplier<ArmorModelProvider> getModelProvider() {
+        return () -> ElectrumArmorModel::getModel;
     }
-
 }

@@ -4,6 +4,8 @@ import galena.oreganized.Oreganized;
 import galena.oreganized.index.OEffects;
 import io.github.fabricators_of_create.porting_lib.client_events.event.client.MovementInputUpdateCallback;
 import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents;
+import io.github.fabricators_of_create.porting_lib.util.EnvExecutor;
+import net.fabricmc.api.EnvType;
 import net.minecraft.client.player.Input;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -21,7 +23,7 @@ public class StunningEffect extends MobEffect {
 
     public static void registerEvents() {
         LivingEntityEvents.LivingTickEvent.TICK.register(StunningEffect::applyStunnedPlayer);
-        MovementInputUpdateCallback.EVENT.register(StunningEffect::applyStunnedPlayer);
+        EnvExecutor.runWhenOn(EnvType.CLIENT, () -> () -> MovementInputUpdateCallback.EVENT.register(StunningEffect::applyStunnedPlayer));
     }
 
     @Override

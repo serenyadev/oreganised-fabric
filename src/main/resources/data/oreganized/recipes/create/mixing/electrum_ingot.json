@@ -2,28 +2,28 @@
   "type": "create:mixing",
   "ingredients": [
     {
-      "tag": "forge:ingots/silver"
+      "tag": "c:silver_ingots"
     },
     {
-      "tag": "forge:ingots/silver"
+      "tag": "c:silver_ingots"
     },
     {
-      "tag": "forge:ingots/silver"
+      "tag": "c:silver_ingots"
     },
     {
-      "tag": "forge:ingots/silver"
+      "tag": "c:silver_ingots"
     },
     {
-      "tag": "forge:ingots/silver"
+      "tag": "c:silver_ingots"
     },
     {
-      "tag": "forge:ingots/gold"
+      "tag": "c:gold_ingots"
     },
     {
-      "tag": "forge:ingots/gold"
+      "tag": "c:gold_ingots"
     },
     {
-      "tag": "forge:ingots/gold"
+      "tag": "c:gold_ingots"
     }
   ],
   "results": [
