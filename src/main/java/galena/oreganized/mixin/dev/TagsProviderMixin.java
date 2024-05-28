@@ -16,7 +16,7 @@ public class TagsProviderMixin {
             at = @At(value = "INVOKE", target = "Ljava/util/List;isEmpty()Z")
     )
     public boolean returnTrue(List instance) {
-        return true;
+        return true; // Bypass unnecessary check
     }
 
 }
