@@ -64,9 +64,11 @@ public class ORecipes extends ORecipeProvider {
         unCompact(OItems.NETHERITE_NUGGET.get(), Items.NETHERITE_INGOT).save(consumer);
 
         makeSlabStonecutting(OBlocks.GLANCE_SLAB, OBlocks.GLANCE, consumer);
+        makeSlabStonecutting(OBlocks.POLISHED_GLANCE_SLAB, OBlocks.POLISHED_GLANCE, consumer);
         makeSlabStonecutting(OBlocks.GLANCE_BRICK_SLAB, OBlocks.GLANCE_BRICKS, consumer);
 
         makeStairsStonecutting(OBlocks.GLANCE_STAIRS, OBlocks.GLANCE, consumer);
+        makeStairsStonecutting(OBlocks.POLISHED_GLANCE_STAIRS, OBlocks.POLISHED_GLANCE, consumer);
         makeStairsStonecutting(OBlocks.GLANCE_BRICK_STAIRS, OBlocks.GLANCE_BRICKS, consumer);
 
         makeWallStonecutting(OBlocks.GLANCE_WALL, OBlocks.GLANCE, consumer);
