@@ -14,6 +14,7 @@ import io.github.fabricators_of_create.porting_lib.loot.IGlobalLootModifier;
 import io.github.fabricators_of_create.porting_lib.loot.PortingLibLoot;
 import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.core.cauldron.CauldronInteraction;

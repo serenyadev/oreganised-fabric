@@ -1,18 +1,23 @@
 package galena.oreganized.client;
 
+import galena.oreganized.Oreganized;
 import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
 import galena.oreganized.client.render.entity.ShrapnelBombRender;
 import galena.oreganized.client.render.gui.OGui;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OEntityTypes;
+import galena.oreganized.index.OFluids;
 import galena.oreganized.index.OItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
@@ -23,6 +28,13 @@ public class OreganizedClient implements ClientModInitializer {
         OGui.registerEvents();
         registerBlockRenderers();
         registerEntityRenderers();
+
+        FluidRenderHandlerRegistry.INSTANCE.register(OFluids.MOLTEN_LEAD.get(), new SimpleFluidRenderHandler(
+                Oreganized.id("block/fluid/molten_lead"),
+                Oreganized.id("block/fluid/molten_lead_flowing"),
+                Oreganized.id("block/fluid/molten_lead_flowing"),
+                FastColor.ARGB32.color(255, 57, 25, 80)
+        ));
 
         ItemProperties.register(OItems.SILVER_MIRROR.get(), new ResourceLocation("level"), (stack, world, entity, seed) -> {
             if (entity == null) {

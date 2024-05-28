@@ -1,6 +1,8 @@
 package galena.oreganized.content.fluid;
 
+import galena.oreganized.index.OFluids;
 import galena.oreganized.index.OParticleTypes;
+import io.github.fabricators_of_create.porting_lib.fluids.FluidType;
 import io.github.fabricators_of_create.porting_lib.util.SimpleFlowableFluid;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -82,5 +84,10 @@ public class MoltenLeadFluid  extends SimpleFlowableFluid {
     @Override
     public ParticleOptions getDripParticle() {
         return OParticleTypes.DRIPPING_LEAD.get();
+    }
+
+    @Override
+    public FluidType getFluidType() {
+        return OFluids.MOLTEN_LEAD_TYPE.get();
     }
 }

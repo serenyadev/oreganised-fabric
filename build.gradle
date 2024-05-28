@@ -66,6 +66,11 @@ repositories {
 		url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
 	}
 
+	maven {
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/"
+	}
+
 	mavenCentral()
 }
 
@@ -91,6 +96,8 @@ dependencies {
 	for(port_lib in modules ) {
 		modImplementation(include("io.github.fabricators_of_create.Porting-Lib:${port_lib}:${project.port_lib_version}"))
 	}
+
+	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
 }
 
 processResources {

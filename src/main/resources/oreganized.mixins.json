@@ -7,7 +7,6 @@
     "FluidInteractionMixin",
     "PlayerEatingMixin",
     "UnwaxingMixin",
-    "dev.FabricDataGeneratorAccessor",
     "dev.TagsProviderMixin"
   ],
   "injectors": {
