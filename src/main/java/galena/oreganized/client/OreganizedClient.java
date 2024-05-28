@@ -4,10 +4,7 @@ import galena.oreganized.Oreganized;
 import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
 import galena.oreganized.client.render.entity.ShrapnelBombRender;
 import galena.oreganized.client.render.gui.OGui;
-import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.OEntityTypes;
-import galena.oreganized.index.OFluids;
-import galena.oreganized.index.OItems;
+import galena.oreganized.index.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -28,6 +25,7 @@ public class OreganizedClient implements ClientModInitializer {
         OGui.registerEvents();
         registerBlockRenderers();
         registerEntityRenderers();
+        OParticleTypes.registerParticleFactories();
 
         FluidRenderHandlerRegistry.INSTANCE.register(OFluids.MOLTEN_LEAD.get(), new SimpleFluidRenderHandler(
                 Oreganized.id("block/fluid/molten_lead"),
