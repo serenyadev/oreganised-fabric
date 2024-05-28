@@ -27,12 +27,10 @@ public abstract class FluidInteractionMixin {
                 BlockPos relative = pos.relative(direction);
 
                 FluidState otherState = level.getFluidState(relative);
-                Optional<BlockState> interaction = FluidInteractionRegistry.getFluidInteraction(state, otherState);
-
-                if (interaction.isPresent()) {
-                    level.setBlock(pos, interaction.get(), 3);
+                FluidInteractionRegistry.getFluidInteraction(state, otherState).ifPresent(result -> {
+                    level.setBlock(pos, result, 3);
                     level.levelEvent(1501, relative, 0);
-                }
+                });
             }
         }
     }
