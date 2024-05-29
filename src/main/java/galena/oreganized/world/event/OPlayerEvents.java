@@ -34,16 +34,6 @@ public class OPlayerEvents {
         UseBlockCallback.EVENT.register(OPlayerEvents::blockItemInteractions);
     }
 
-    public static InteractionResultHolder<BlockState> unwax(BlockState state) {
-
-        // Removing Wax ('Unwaxing' - Using an Axe on a waxed block).
-
-        Block unWaxedBlock = OBlocks.WAXED_BLOCKS.get(state.getBlock());
-        if (unWaxedBlock == null) return InteractionResultHolder.fail(Blocks.AIR.defaultBlockState());
-        return InteractionResultHolder.success(unWaxedBlock.defaultBlockState());
-
-    }
-
     public static InteractionResult blockItemInteractions(Player player, Level world, InteractionHand hand, BlockHitResult hit) {
         BlockPos pos = hit.getBlockPos();
         BlockState state = world.getBlockState(pos);
