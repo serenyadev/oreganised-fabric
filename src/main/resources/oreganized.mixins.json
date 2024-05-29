@@ -6,7 +6,7 @@
   "mixins": [
     "FluidInteractionMixin",
     "PlayerEatingMixin",
-    "UnwaxingMixin",
+    "TntBlockMixin",
     "dev.TagsProviderMixin"
   ],
   "injectors": {

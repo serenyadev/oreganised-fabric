@@ -2,6 +2,7 @@ package galena.oreganized.content.block;
 
 import galena.oreganized.content.entity.ShrapnelBomb;
 import galena.oreganized.index.OSoundEvents;
+import galena.oreganized.utils.CustomTntBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -21,12 +22,13 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class ShrapnelBombBlock extends TntBlock {
+public class ShrapnelBombBlock extends TntBlock implements CustomTntBlock {
 
     public ShrapnelBombBlock(Properties properties) {
         super(properties);
     }
 
+    @Override
     public void explode(Level world, BlockPos pos, @Nullable LivingEntity entity) {
         if (!world.isClientSide) {
             ShrapnelBomb shrapnelBomb = new ShrapnelBomb(world, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, entity);
@@ -35,29 +37,8 @@ public class ShrapnelBombBlock extends TntBlock {
             world.gameEvent(entity, GameEvent.PRIME_FUSE, pos);
         }
     }
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack itemStack = player.getItemInHand(hand);
-        if (!itemStack.is(Items.FLINT_AND_STEEL) && !itemStack.is(Items.FIRE_CHARGE)) {
-            return super.use(state, level, pos, player, hand, hit);
-        } else {
-            explode(level, pos, player);
-            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-            Item item = itemStack.getItem();
-            if (!player.isCreative()) {
-                if (itemStack.is(Items.FLINT_AND_STEEL)) {
-                    itemStack.hurtAndBreak(1, player, (playerx) -> {
-                        playerx.broadcastBreakEvent(hand);
-                    });
-                } else {
-                    itemStack.shrink(1);
-                }
-            }
 
-            player.awardStat(Stats.ITEM_USED.get(item));
-            return InteractionResult.sidedSuccess(level.isClientSide);
-        }
-    }
-
+    @Override
     public void wasExploded(Level world, BlockPos pos, Explosion explosion) {
         if (!world.isClientSide) {
             ShrapnelBomb shrapnelBomb = new ShrapnelBomb(world, (double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D, explosion.getIndirectSourceEntity());

@@ -17,12 +17,15 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class OPlayerEvents {
@@ -45,6 +48,24 @@ public class OPlayerEvents {
         BlockPos pos = hit.getBlockPos();
         BlockState state = world.getBlockState(pos);
         ItemStack stack = player.getItemInHand(hand);
+
+        if(stack.getItem() instanceof AxeItem) {
+            Block unwaxed = OBlocks.WAXED_BLOCKS.get(state.getBlock());
+            if(unwaxed != null) {
+                world.playSound(player, pos, SoundEvents.AXE_WAX_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
+                world.levelEvent(player, 3004, pos, 0);
+
+                if (player instanceof ServerPlayer) {
+                    CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, pos, stack);
+                }
+
+                world.setBlock(pos, unwaxed.defaultBlockState(), 11);
+                world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, unwaxed.defaultBlockState()));
+                stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+
+                return InteractionResult.sidedSuccess(world.isClientSide);
+            }
+        }
 
         // Waxing (Using Honeycomb on a waxable block).
         if (stack.is(Items.HONEYCOMB) && OBlocks.WAXED_BLOCKS.inverse().get(state.getBlock()) != null) {
