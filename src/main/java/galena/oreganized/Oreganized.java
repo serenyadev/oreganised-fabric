@@ -2,19 +2,21 @@ package galena.oreganized;
 
 import com.google.common.collect.ImmutableBiMap;
 import com.mojang.serialization.Codec;
-import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
 import galena.oreganized.content.effect.StunningEffect;
 import galena.oreganized.index.*;
 import galena.oreganized.utils.FluidInteractionRegistry;
 import galena.oreganized.world.AddItemLootModifier;
 import galena.oreganized.world.event.OPlayerEvents;
+import io.github.fabricators_of_create.porting_lib.config.ConfigRegistry;
+import io.github.fabricators_of_create.porting_lib.config.ConfigType;
+import io.github.fabricators_of_create.porting_lib.config.ModConfig;
+import io.github.fabricators_of_create.porting_lib.config.ModConfigSpec;
 import io.github.fabricators_of_create.porting_lib.fluids.PortingLibFluids;
 import io.github.fabricators_of_create.porting_lib.loot.IGlobalLootModifier;
 import io.github.fabricators_of_create.porting_lib.loot.PortingLibLoot;
 import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.core.cauldron.CauldronInteraction;
@@ -26,8 +28,6 @@ import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FireBlock;
-import net.minecraftforge.fml.config.ModConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,7 +70,7 @@ public class Oreganized implements ModInitializer {
 				fluidState -> OBlocks.LEAD_BLOCK.get().defaultBlockState()
 		));
 
-		ForgeConfigRegistry.INSTANCE.register(MOD_ID, ModConfig.Type.COMMON, OreganizedConfig.COMMON_SPEC);
+		ConfigRegistry.registerConfig(MOD_ID, ConfigType.COMMON, OreganizedConfig.COMMON_SPEC);
 
 		OPlayerEvents.register();
 		StunningEffect.registerEvents();

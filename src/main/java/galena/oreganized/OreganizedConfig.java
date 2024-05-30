@@ -1,17 +1,18 @@
 package galena.oreganized;
 
 import galena.oreganized.index.OEffects;
+import io.github.fabricators_of_create.porting_lib.config.ModConfigSpec;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import io.github.fabricators_of_create.porting_lib.config.ModConfigSpec.ConfigValue;
 import org.apache.commons.lang3.tuple.Pair;
 
+@SuppressWarnings("UnstableApiUsage")
 public class OreganizedConfig {
     public static final Common COMMON;
     public static final Client CLIENT;
-    public static final ForgeConfigSpec COMMON_SPEC;
-    public static final ForgeConfigSpec CLIENT_SPEC;
+    public static final ModConfigSpec COMMON_SPEC;
+    public static final ModConfigSpec CLIENT_SPEC;
 
     public static class Common {
         public final ConfigValue<Boolean> stunningOrPoison;
@@ -29,7 +30,7 @@ public class OreganizedConfig {
 
         public final ConfigValue<Boolean> ravagerSilver;
 
-        private Common(ForgeConfigSpec.Builder builder) {
+        private Common(ModConfigSpec.Builder builder) {
             builder.comment("Common");
             builder.push("common");
             stunningOrPoison = builder.comment("Should lead poisoning events give the Stunning effect or just Poison").define("leadPoisoningStunning", true);
@@ -57,7 +58,7 @@ public class OreganizedConfig {
 
     public static class Client {
 
-        public Client(ForgeConfigSpec.Builder builder) {
+        public Client(ModConfigSpec.Builder builder) {
             builder.comment("Client");
             builder.push("client");
             builder.pop();
@@ -65,8 +66,8 @@ public class OreganizedConfig {
     }
 
     static {
-        final Pair<Common, ForgeConfigSpec> commonSpecPair = new ForgeConfigSpec.Builder().configure(Common::new);
-        final Pair<Client, ForgeConfigSpec> cleintSpecPair = new ForgeConfigSpec.Builder().configure(Client::new);
+        final Pair<Common, ModConfigSpec> commonSpecPair = new ModConfigSpec.Builder().configure(Common::new);
+        final Pair<Client, ModConfigSpec> cleintSpecPair = new ModConfigSpec.Builder().configure(Client::new);
 
         COMMON = commonSpecPair.getLeft();
         CLIENT = cleintSpecPair.getLeft();

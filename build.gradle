@@ -5,7 +5,7 @@ plugins {
 
 version = project.mod_version
 group = project.maven_group
-var modules = ['base', 'client_events', 'common', 'core', 'data', 'extensions', 'fluids',
+var modules = ['base', 'client_events', 'common', 'config', 'core', 'data', 'extensions', 'fluids',
             'lazy_registration', 'level_events', 'loot', 'model_builders', 'tags']
 
 base {
@@ -91,7 +91,6 @@ dependencies {
 
 	// Dependencies
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_version}"
 
 	for(port_lib in modules ) {
 		modImplementation(include("io.github.fabricators_of_create.Porting-Lib:${port_lib}:${project.port_lib_version}"))
