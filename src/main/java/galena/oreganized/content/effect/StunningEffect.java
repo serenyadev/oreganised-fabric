@@ -1,6 +1,5 @@
 package galena.oreganized.content.effect;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.index.OEffects;
 import io.github.fabricators_of_create.porting_lib.client_events.event.client.MovementInputUpdateCallback;
 import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents;

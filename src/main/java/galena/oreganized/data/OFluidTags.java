@@ -1,14 +1,11 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.index.OFluids;
 import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
 import io.github.fabricators_of_create.porting_lib.data.PortingLibTagsProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.material.Fluid;
 import org.jetbrains.annotations.NotNull;

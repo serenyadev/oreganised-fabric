@@ -1,7 +1,6 @@
 package galena.oreganized.data.provider;
 
 import io.github.fabricators_of_create.porting_lib.data.ModdedBlockLootSubProvider;
-import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;

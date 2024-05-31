@@ -1,6 +1,5 @@
 package galena.oreganized.data;
 
-import galena.oreganized.index.OFeatures;
 import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

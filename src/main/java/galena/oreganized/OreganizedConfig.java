@@ -2,9 +2,9 @@ package galena.oreganized;
 
 import galena.oreganized.index.OEffects;
 import io.github.fabricators_of_create.porting_lib.config.ModConfigSpec;
+import io.github.fabricators_of_create.porting_lib.config.ModConfigSpec.ConfigValue;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
-import io.github.fabricators_of_create.porting_lib.config.ModConfigSpec.ConfigValue;
 import org.apache.commons.lang3.tuple.Pair;
 
 @SuppressWarnings("UnstableApiUsage")

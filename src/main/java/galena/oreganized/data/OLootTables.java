@@ -7,8 +7,6 @@ import galena.oreganized.index.OItems;
 import io.github.fabricators_of_create.porting_lib.data.ModdedEntityLootSubProvider;
 import io.github.fabricators_of_create.porting_lib.data.ModdedLootTableProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.loot.EntityLootSubProvider;
-import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;

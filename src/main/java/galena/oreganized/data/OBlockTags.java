@@ -1,8 +1,6 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.index.OBlocks;
-import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
 import io.github.fabricators_of_create.porting_lib.tags.Tags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;

@@ -10,8 +10,6 @@ import galena.oreganized.world.AddItemLootModifier;
 import galena.oreganized.world.event.OPlayerEvents;
 import io.github.fabricators_of_create.porting_lib.config.ConfigRegistry;
 import io.github.fabricators_of_create.porting_lib.config.ConfigType;
-import io.github.fabricators_of_create.porting_lib.config.ModConfig;
-import io.github.fabricators_of_create.porting_lib.config.ModConfigSpec;
 import io.github.fabricators_of_create.porting_lib.fluids.PortingLibFluids;
 import io.github.fabricators_of_create.porting_lib.loot.IGlobalLootModifier;
 import io.github.fabricators_of_create.porting_lib.loot.PortingLibLoot;
@@ -74,18 +72,15 @@ public class Oreganized implements ModInitializer {
 
 		OPlayerEvents.register();
 		StunningEffect.registerEvents();
-
-		OFeatures.Placed.registerBiomeModification();
+		OFeatures.registerBiomeModifications();
 
 		registerCreativeTabModifiers();
 		registerCauldronInteractions();
 		registerWaxedBlocks();
 
-		if (OreganizedConfig.stunningFromConfig()) {
-			PotionBrewing.addMix(Potions.WATER, OItems.LEAD_INGOT.get(), OPotions.STUNNING.get());
-			PotionBrewing.addMix(OPotions.STUNNING.get(), Items.REDSTONE, OPotions.LONG_STUNNING.get());
-			PotionBrewing.addMix(OPotions.STUNNING.get(), Items.GLOWSTONE_DUST, OPotions.STRONG_STUNNING.get());
-		}
+		PotionBrewing.addMix(Potions.WATER, OItems.LEAD_INGOT.get(), OPotions.STUNNING.get());
+		PotionBrewing.addMix(OPotions.STUNNING.get(), Items.REDSTONE, OPotions.LONG_STUNNING.get());
+		PotionBrewing.addMix(OPotions.STUNNING.get(), Items.GLOWSTONE_DUST, OPotions.STRONG_STUNNING.get());
 
 		FlammableBlockRegistry.getDefaultInstance().add(OBlocks.SHRAPNEL_BOMB.get(), 15, 100);
 
