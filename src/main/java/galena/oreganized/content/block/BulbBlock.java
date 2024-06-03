@@ -53,6 +53,7 @@ public class BulbBlock extends Block implements IMeltableBlock {
         return defaultGoopyness + 1;
     }
 
+    @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         tickMelting(state, world, pos, random);
     }
