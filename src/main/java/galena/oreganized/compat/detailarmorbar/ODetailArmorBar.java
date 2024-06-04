@@ -8,10 +8,10 @@ import galena.oreganized.index.OItems;
 import net.minecraft.resources.ResourceLocation;
 
 public class ODetailArmorBar {
-
     public static ResourceLocation ARMOR_ICON = Oreganized.id("textures/gui/armor_bar.png");
     public static void init() {
-        DetailArmorBarAPI.customArmorBarBuilder().armor(OItems.ELECTRUM_HELMET.get(),
+        DetailArmorBarAPI.customArmorBarBuilder()
+                .armor(OItems.ELECTRUM_HELMET.get(),
                         OItems.ELECTRUM_CHESTPLATE.get(),
                         OItems.ELECTRUM_LEGGINGS.get(),
                         OItems.ELECTRUM_BOOTS.get())

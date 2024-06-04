@@ -71,6 +71,18 @@ repositories {
 		url = "https://api.modrinth.com/maven"
 	}
 
+	maven {
+		name = "Greenhouse Maven"
+		url = 'https://maven.greenhouseteam.dev/releases/'
+	}
+
+	maven {
+		url "https://jitpack.io/" // Fabric ASM
+		content {
+			excludeGroup "io.github.fabricators_of_create"
+		}
+	}
+
 	mavenCentral()
 }
 
@@ -97,7 +109,20 @@ dependencies {
 	}
 
 	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
-	modImplementation("maven.modrinth:detail-armor-bar:2.6.3+1.20.1-fabric")
+
+	modCompileOnly("maven.modrinth:detail-armor-bar:${project.detailab_version}")
+	modCompileOnly("maven.modrinth:nethers-delight-refabricated:${project.nd_version}")
+	modCompileOnly("vectorwing:FarmersDelight:${project.fd_version}") {
+		exclude(group: "net.fabricmc")
+	}
+
+	if(project.test_mods == "true") {
+		modLocalRuntime("maven.modrinth:detail-armor-bar:${project.detailab_version}")
+		modLocalRuntime("maven.modrinth:nethers-delight-refabricated:${project.nd_version}")
+		modLocalRuntime("vectorwing:FarmersDelight:${project.fd_version}") {
+				exclude(group: "net.fabricmc")
+		}
+	}
 }
 
 processResources {

@@ -6,6 +6,7 @@ import galena.oreganized.OreganizedConfig;
 import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
 import galena.oreganized.client.render.entity.ShrapnelBombRender;
 import galena.oreganized.client.render.gui.OGui;
+import galena.oreganized.compat.CompatHandler;
 import galena.oreganized.compat.detailarmorbar.ODetailArmorBar;
 import galena.oreganized.index.*;
 import io.github.fabricators_of_create.porting_lib.config.ConfigRegistry;
@@ -49,9 +50,7 @@ public class OreganizedClient implements ClientModInitializer {
             }
         });
 
-        if(FabricLoader.getInstance().isModLoaded("detailab")) {
-            ODetailArmorBar.init();
-        }
+        CompatHandler.initClient();
     }
 
     private static void render(Supplier<? extends Block> block, RenderType render) {
