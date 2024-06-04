@@ -1,10 +1,12 @@
 package galena.oreganized.client;
 
+import com.redlimerl.detailab.DetailArmorBar;
 import galena.oreganized.Oreganized;
 import galena.oreganized.OreganizedConfig;
 import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
 import galena.oreganized.client.render.entity.ShrapnelBombRender;
 import galena.oreganized.client.render.gui.OGui;
+import galena.oreganized.compat.detailarmorbar.ODetailArmorBar;
 import galena.oreganized.index.*;
 import io.github.fabricators_of_create.porting_lib.config.ConfigRegistry;
 import io.github.fabricators_of_create.porting_lib.config.ConfigType;
@@ -13,6 +15,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
@@ -45,6 +48,10 @@ public class OreganizedClient implements ClientModInitializer {
                 return stack.getOrCreateTag().getInt("Level");
             }
         });
+
+        if(FabricLoader.getInstance().isModLoaded("detailab")) {
+            ODetailArmorBar.init();
+        }
     }
 
     private static void render(Supplier<? extends Block> block, RenderType render) {

@@ -9,14 +9,12 @@
   "result": {
     "item": "oreganized:electrum_machete"
   },
-  "conditions": [
+  "fabric:load_conditions": [
     {
-      "modid": "nethersdelight",
-      "type": "forge:mod_loaded"
-    },
-    {
-      "type": "forge:tag_empty",
-      "tag": "modestmining:electrum_pieces"
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "nethersdelight"
+      ]
     }
   ]
 }

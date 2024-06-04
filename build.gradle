@@ -62,13 +62,13 @@ repositories {
 	}
 
 	maven {
-		name = "Fuzs Mod Resources"
-		url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/"
 	}
 
 	maven {
-		name = "TerraformersMC"
-		url = "https://maven.terraformersmc.com/"
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
 	}
 
 	mavenCentral()
@@ -97,6 +97,7 @@ dependencies {
 	}
 
 	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
+	modImplementation("maven.modrinth:detail-armor-bar:2.6.3+1.20.1-fabric")
 }
 
 processResources {
