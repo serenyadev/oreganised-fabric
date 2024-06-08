@@ -34,16 +34,11 @@ public class OreganizedClient implements ClientModInitializer {
         OGui.registerEvents();
         registerBlockRenderers();
         registerEntityRenderers();
+        registerFluidRenderers();
+        registerArmorRenderers();
+
         OParticleTypes.registerParticleFactories();
-
         ConfigRegistry.registerConfig(Oreganized.MOD_ID, ConfigType.CLIENT, OreganizedConfig.CLIENT_SPEC);
-
-        FluidRenderHandlerRegistry.INSTANCE.register(OFluids.MOLTEN_LEAD.get(), new SimpleFluidRenderHandler(
-                Oreganized.id("block/fluid/molten_lead"),
-                Oreganized.id("block/fluid/molten_lead_flowing"),
-                Oreganized.id("block/fluid/molten_lead_flowing"),
-                0xFFFFFFFF // FastColor.ARGB32.color(255, 57, 25, 80)
-        ));
 
         ItemProperties.register(OItems.SILVER_MIRROR.get(), new ResourceLocation("level"), (stack, world, entity, seed) -> {
             if (entity == null) {
@@ -54,15 +49,6 @@ public class OreganizedClient implements ClientModInitializer {
         });
 
         CompatHandler.initClient();
-
-        CustomArmorRegistry.register(b -> b.model(ElectrumArmorModel::getModel)
-                .texture(ElectrumArmorItem.TEXTURE)
-                .vanillaTrimModel()
-                .items(OItems.ELECTRUM_HELMET.get(),
-                        OItems.ELECTRUM_CHESTPLATE.get(),
-                        OItems.ELECTRUM_LEGGINGS.get(),
-                        OItems.ELECTRUM_BOOTS.get()
-                ));
     }
 
     private static void render(Supplier<? extends Block> block, RenderType render) {
@@ -84,5 +70,24 @@ public class OreganizedClient implements ClientModInitializer {
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(OEntityTypes.SHRAPNEL_BOMB.get(), ShrapnelBombRender::new);
         EntityRendererRegistry.register(OEntityTypes.SHRAPNEL_BOMB_MINECART.get(), ShrapnelBombMinecartRender::new);
+    }
+
+    public static void registerFluidRenderers() {
+        FluidRenderHandlerRegistry.INSTANCE.register(OFluids.MOLTEN_LEAD.get(), new SimpleFluidRenderHandler(
+                Oreganized.id("block/fluid/molten_lead"),
+                Oreganized.id("block/fluid/molten_lead_flowing"),
+                Oreganized.id("block/fluid/molten_lead_flowing"),
+                0xFFFFFFFF // FastColor.ARGB32.color(255, 57, 25, 80)
+        ));
+    }
+
+    public static void registerArmorRenderers() {
+        CustomArmorRegistry.register(b -> b.model(ElectrumArmorModel::getModel)
+                .texture(ElectrumArmorItem.TEXTURE)
+                .vanillaTrimModel()
+                .items(OItems.ELECTRUM_HELMET.get(),
+                        OItems.ELECTRUM_CHESTPLATE.get(),
+                        OItems.ELECTRUM_LEGGINGS.get(),
+                        OItems.ELECTRUM_BOOTS.get()));
     }
 }
