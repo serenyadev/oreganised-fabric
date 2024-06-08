@@ -82,6 +82,10 @@ repositories {
 			excludeGroup "io.github.fabricators_of_create"
 		}
 	}
+	maven {
+		name = "sappho company"
+		url = "https://maven.is-immensely.gay/releases"
+	}
 
 	mavenCentral()
 }
@@ -103,9 +107,11 @@ dependencies {
 
 	// Dependencies
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation include("uwu.serenity:custom_armor_models:1.0a")
+
 
 	for(port_lib in modules ) {
-		modImplementation(include("io.github.fabricators_of_create.Porting-Lib:${port_lib}:${project.port_lib_version}"))
+		modImplementation include("io.github.fabricators_of_create.Porting-Lib:${port_lib}:${project.port_lib_version}")
 	}
 
 	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")

@@ -12,7 +12,5 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "client": [
-    "client.HumanoidArmorLayerMixin"
-  ]
+  "client": []
 }

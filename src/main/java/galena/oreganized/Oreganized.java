@@ -1,6 +1,7 @@
 package galena.oreganized;
 
 import com.google.common.collect.ImmutableBiMap;
+import com.google.gson.GsonBuilder;
 import com.mojang.serialization.Codec;
 import galena.oreganized.compat.CompatHandler;
 import galena.oreganized.compat.farmersdelight.FarmersDelightCompat;
@@ -10,6 +11,7 @@ import galena.oreganized.index.*;
 import galena.oreganized.utils.FluidInteractionRegistry;
 import galena.oreganized.world.AddItemLootModifier;
 import galena.oreganized.world.event.OPlayerEvents;
+import io.github.fabricators_of_create.porting_lib.client.armor.ArmorRendererRegistry;
 import io.github.fabricators_of_create.porting_lib.config.ConfigRegistry;
 import io.github.fabricators_of_create.porting_lib.config.ConfigType;
 import io.github.fabricators_of_create.porting_lib.fluids.PortingLibFluids;

@@ -5,7 +5,6 @@ import com.google.common.collect.Multimap;
 import galena.oreganized.Oreganized;
 import galena.oreganized.client.model.ElectrumArmorModel;
 import galena.oreganized.index.OArmorMaterials;
-import galena.oreganized.utils.CustomModelArmor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.world.entity.Entity;
@@ -20,8 +19,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-public class ElectrumArmorItem extends ArmorItem implements CustomModelArmor {
-    private static final String TEXTURE = Oreganized.MOD_ID + ":textures/entity/electrum_armor.png";
+public class ElectrumArmorItem extends ArmorItem {
+    public static final String TEXTURE = Oreganized.MOD_ID + ":textures/entity/electrum_armor.png";
 
     public ElectrumArmorItem(Type slot) {
         super(OArmorMaterials.ELECTRUM, slot, new Properties());
@@ -40,17 +39,5 @@ public class ElectrumArmorItem extends ArmorItem implements CustomModelArmor {
             );
         }
         return super.getDefaultAttributeModifiers(slot);
-    }
-
-
-    @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return TEXTURE;
-    }
-
-    @Override
-    @Environment(EnvType.CLIENT)
-    public Supplier<ArmorModelProvider> getModelProvider() {
-        return () -> ElectrumArmorModel::getModel;
     }
 }
