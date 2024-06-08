@@ -18,7 +18,6 @@ import net.minecraft.world.item.ItemStack;
 @Environment(EnvType.CLIENT)
 public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorModel<T> {
 
-
     public static final ModelLayerLocation ELECTRUM_ARMOR = new ModelLayerLocation(Oreganized.id( "electrum_armor"), "main");
     private final EquipmentSlot slot;
     private final ModelPart Head;
@@ -30,7 +29,7 @@ public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorMod
     private final ModelPart RightBoot;
     private final ModelPart LeftBoot;
 
-    public ElectrumArmorModel(ModelPart root, EquipmentSlot slot, HumanoidModel<T> wrapped) {
+    public ElectrumArmorModel(ModelPart root, EquipmentSlot slot) {
         super(root);
         this.slot = slot;
         this.Head = root.getChild("Head");
@@ -132,6 +131,6 @@ public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorMod
     }
 
     public static HumanoidModel<?> getModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> original) {
-        return new ElectrumArmorModel<>(ElectrumArmorModel.createBodyLayer().bakeRoot(), armorSlot, original);
+        return new ElectrumArmorModel<>(ElectrumArmorModel.createBodyLayer().bakeRoot(), armorSlot);
     }
 }
