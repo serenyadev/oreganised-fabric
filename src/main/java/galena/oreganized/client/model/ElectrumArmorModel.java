@@ -14,6 +14,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import uwu.serenity.custom_armor_models.api.ArmorModelCache;
 
 @Environment(EnvType.CLIENT)
 public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorModel<T> {
@@ -130,7 +131,7 @@ public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorMod
         }
     }
 
-    public static HumanoidModel<?> getModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> original) {
-        return new ElectrumArmorModel<>(ElectrumArmorModel.createBodyLayer().bakeRoot(), armorSlot);
+    public static HumanoidModel<?> getModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> original, ArmorModelCache cache) {
+        return cache.compute(armorSlot.getName(), () -> new ElectrumArmorModel<>(ElectrumArmorModel.createBodyLayer().bakeRoot(), armorSlot));
     }
 }

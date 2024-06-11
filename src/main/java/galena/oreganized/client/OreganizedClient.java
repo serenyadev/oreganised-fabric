@@ -82,8 +82,11 @@ public class OreganizedClient implements ClientModInitializer {
     }
 
     public static void registerArmorRenderers() {
-        CustomArmorRegistry.register(b -> b.items(OItems.ELECTRUM_HELMET.get(), OItems.ELECTRUM_CHESTPLATE.get(),
-                        OItems.ELECTRUM_LEGGINGS.get(), OItems.ELECTRUM_BOOTS.get())
+        CustomArmorRegistry.register(b ->
+                b.items(OItems.ELECTRUM_HELMET.get(),
+                        OItems.ELECTRUM_CHESTPLATE.get(),
+                        OItems.ELECTRUM_LEGGINGS.get(),
+                        OItems.ELECTRUM_BOOTS.get())
                 .model(ElectrumArmorModel::getModel)
                 .texture(ElectrumArmorItem.TEXTURE)
                 .vanillaTrimModel()
