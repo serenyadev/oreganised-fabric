@@ -107,7 +107,7 @@ dependencies {
 
 	// Dependencies
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation include("uwu.serenity:custom_armor_models:${project.custom_armor_version}")
+	modImplementation include("uwu.serenity.cam:CustomArmorModels-fabric:${project.custom_armor_version}")
 
 
 	for(port_lib in modules ) {
