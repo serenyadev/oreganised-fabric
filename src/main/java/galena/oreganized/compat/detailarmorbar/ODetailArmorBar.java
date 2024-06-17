@@ -16,7 +16,7 @@ public class ODetailArmorBar {
                         OItems.ELECTRUM_LEGGINGS.get(),
                         OItems.ELECTRUM_BOOTS.get())
                 .render(stack -> new ArmorBarRenderManager(ARMOR_ICON, 18, 18,
-                        new TextureOffset(9, 9), new TextureOffset(0, 9), new TextureOffset(0, 0), new TextureOffset(9, 0)))
+                        new TextureOffset(9, 9), new TextureOffset(0, 9), new TextureOffset(9, 0), new TextureOffset(0, 0)))
                 .register();
     }
 }
