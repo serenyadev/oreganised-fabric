@@ -31,19 +31,19 @@ public class OItems {
     // Tools
     public static final RegistryObject<Item> BUSH_HAMMER = ITEMS.register("bush_hammer", () -> new BushHammerItem(OItemTiers.LEAD, 2.5F, -2.8F, (new Item.Properties()).stacksTo(1)));
 
-    public static final RegistryObject<Item> ELECTRUM_SWORD = ITEMS.register("electrum_sword", () -> new OSwordItem(OItemTiers.ELECTRUM, 3, -2.2F, (new Item.Properties())));
-    public static final RegistryObject<Item> ELECTRUM_SHOVEL = ITEMS.register("electrum_shovel", () -> new ShovelItem(OItemTiers.ELECTRUM, 1.5F, -2.8F, (new Item.Properties())));
-    public static final RegistryObject<Item> ELECTRUM_PICKAXE = ITEMS.register("electrum_pickaxe", () -> new PickaxeItem(OItemTiers.ELECTRUM, 1, -2.6F, (new Item.Properties())));
-    public static final RegistryObject<Item> ELECTRUM_AXE = ITEMS.register("electrum_axe", () -> new AxeItem(OItemTiers.ELECTRUM, 6.0F, -2.8F, (new Item.Properties())));
-    public static final RegistryObject<Item> ELECTRUM_HOE = ITEMS.register("electrum_hoe", () -> new HoeItem(OItemTiers.ELECTRUM, 0, -2.8F, (new Item.Properties())));
+    public static final RegistryObject<OSwordItem> ELECTRUM_SWORD = ITEMS.register("electrum_sword", () -> new OSwordItem(OItemTiers.ELECTRUM, 3, -2.2F, (new Item.Properties())));
+    public static final RegistryObject<ShovelItem> ELECTRUM_SHOVEL = ITEMS.register("electrum_shovel", () -> new ShovelItem(OItemTiers.ELECTRUM, 1.5F, -2.8F, (new Item.Properties())));
+    public static final RegistryObject<PickaxeItem> ELECTRUM_PICKAXE = ITEMS.register("electrum_pickaxe", () -> new PickaxeItem(OItemTiers.ELECTRUM, 1, -2.6F, (new Item.Properties())));
+    public static final RegistryObject<AxeItem> ELECTRUM_AXE = ITEMS.register("electrum_axe", () -> new AxeItem(OItemTiers.ELECTRUM, 6.0F, -2.8F, (new Item.Properties())));
+    public static final RegistryObject<HoeItem> ELECTRUM_HOE = ITEMS.register("electrum_hoe", () -> new HoeItem(OItemTiers.ELECTRUM, 0, -2.8F, (new Item.Properties())));
 
     // Misc Tools
-    public static final RegistryObject<Item> SILVER_MIRROR = ITEMS.register("silver_mirror", () -> new SilverMirrorItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<SilverMirrorItem> SILVER_MIRROR = ITEMS.register("silver_mirror", () -> new SilverMirrorItem(new Item.Properties().stacksTo(1)));
     //public static final RegistryObject<Item> BROKEN_SILVER_MIRROR = ITEMS.register("broken_silver_mirror", () -> new OItem(new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> MOLTEN_LEAD_BUCKET = ITEMS.register("molten_lead_bucket", () -> new BucketItem(OFluids.MOLTEN_LEAD.get(), new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
 
     // Armor
-    public static final RegistryObject<Item> ELECTRUM_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("electrum_upgrade_smithing_template",
+    public static final RegistryObject<SmithingTemplateItem> ELECTRUM_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("electrum_upgrade_smithing_template",
             OSmithingTemplateItem::createElectrumUpgradeTemplate);
     public static final RegistryObject<ArmorItem> ELECTRUM_HELMET = ITEMS.register("electrum_helmet",
             () -> new ElectrumArmorItem(ArmorItem.Type.HELMET));

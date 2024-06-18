@@ -1,17 +1,14 @@
 package galena.oreganized;
 
 import com.google.common.collect.ImmutableBiMap;
-import com.google.gson.GsonBuilder;
 import com.mojang.serialization.Codec;
 import galena.oreganized.compat.CompatHandler;
-import galena.oreganized.compat.farmersdelight.FarmersDelightCompat;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
 import galena.oreganized.content.effect.StunningEffect;
 import galena.oreganized.index.*;
 import galena.oreganized.utils.FluidInteractionRegistry;
 import galena.oreganized.world.AddItemLootModifier;
 import galena.oreganized.world.event.OPlayerEvents;
-import io.github.fabricators_of_create.porting_lib.client.armor.ArmorRendererRegistry;
 import io.github.fabricators_of_create.porting_lib.config.ConfigRegistry;
 import io.github.fabricators_of_create.porting_lib.config.ConfigType;
 import io.github.fabricators_of_create.porting_lib.fluids.PortingLibFluids;
@@ -21,7 +18,6 @@ import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTabs;

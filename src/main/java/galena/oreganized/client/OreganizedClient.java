@@ -1,6 +1,5 @@
 package galena.oreganized.client;
 
-import com.redlimerl.detailab.DetailArmorBar;
 import galena.oreganized.Oreganized;
 import galena.oreganized.OreganizedConfig;
 import galena.oreganized.client.model.ElectrumArmorModel;
@@ -8,7 +7,6 @@ import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
 import galena.oreganized.client.render.entity.ShrapnelBombRender;
 import galena.oreganized.client.render.gui.OGui;
 import galena.oreganized.compat.CompatHandler;
-import galena.oreganized.compat.detailarmorbar.ODetailArmorBar;
 import galena.oreganized.content.item.ElectrumArmorItem;
 import galena.oreganized.index.*;
 import io.github.fabricators_of_create.porting_lib.config.ConfigRegistry;
@@ -18,11 +16,9 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.FastColor;
 import net.minecraft.world.level.block.Block;
 import uwu.serenity.custom_armor_models.api.CustomArmorRegistry;
 
@@ -36,19 +32,25 @@ public class OreganizedClient implements ClientModInitializer {
         registerEntityRenderers();
         registerFluidRenderers();
         registerArmorRenderers();
+        //registerClientNetworking();
 
         OParticleTypes.registerParticleFactories();
         ConfigRegistry.registerConfig(Oreganized.MOD_ID, ConfigType.CLIENT, OreganizedConfig.CLIENT_SPEC);
 
         ItemProperties.register(OItems.SILVER_MIRROR.get(), new ResourceLocation("level"), (stack, world, entity, seed) -> {
-            if (entity == null) {
-                return 8;
-            } else {
-                return stack.getOrCreateTag().getInt("Level");
-            }
+            return stack.getOrCreateTag().getInt("Level") / 10f;
         });
 
+
         CompatHandler.initClient();
+
+    }
+
+    private static void registerClientNetworking() {
+//        ClientPlayNetworking.registerGlobalReceiver(ONetworking.SILVER_MIRROR, (packet, player, responseSender) -> {
+//            int level = packet.level();
+//            Minecraft.getInstance().execute(() -> OItems.SILVER_MIRROR.get().handleClient(player.getMainHandItem(), level));
+//        });
     }
 
     private static void render(Supplier<? extends Block> block, RenderType render) {
