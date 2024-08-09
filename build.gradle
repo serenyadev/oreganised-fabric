@@ -110,7 +110,7 @@ dependencies {
 	modImplementation include("uwu.serenity.cam:CustomArmorModels-fabric:${project.custom_armor_version}")
 
 
-	for(port_lib in modules ) {
+	for(port_lib in modules) {
 		modImplementation include("io.github.fabricators_of_create.Porting-Lib:${port_lib}:${project.port_lib_version}")
 	}
 
