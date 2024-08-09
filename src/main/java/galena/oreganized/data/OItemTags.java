@@ -38,7 +38,7 @@ public class OItemTags extends PortingLibItemTagsProvider {
         tag(LIGHTER_THAN_LEAD).add(Items.IRON_BOOTS);
         copy(OTags.Blocks.STONE_TYPES_GLANCE, STONE_TYPES_GLANCE);
 
-        // Oreganized Forge
+        // Oreganized Conventional
         tag(RAW_MATERIALS_SILVER).add(OItems.RAW_SILVER.get());
         tag(RAW_MATERIALS_LEAD).add(OItems.RAW_LEAD.get());
 
@@ -74,7 +74,7 @@ public class OItemTags extends PortingLibItemTagsProvider {
         tag(ItemTags.TRIMMABLE_ARMOR).add(OItems.ELECTRUM_HELMET.get(), OItems.ELECTRUM_CHESTPLATE.get(), OItems.ELECTRUM_LEGGINGS.get(), OItems.ELECTRUM_BOOTS.get());
         tag(ItemTags.TRIM_MATERIALS).add(OItems.LEAD_INGOT.get(), OItems.SILVER_INGOT.get(), OItems.ELECTRUM_INGOT.get());
 
-        // Forge
+        // Conventional
         tag(Tags.Items.NUGGETS).addTags(NUGGETS_SILVER, NUGGETS_LEAD, NUGGETS_ELECTRUM, NUGGETS_NETHERITE);
         tag(Tags.Items.INGOTS).addTags(INGOTS_SILVER, INGOTS_LEAD, INGOTS_ELECTRUM);
         tag(Tags.Items.ORES).addTags(ORES_SILVER, ORES_LEAD);

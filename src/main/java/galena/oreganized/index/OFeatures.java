@@ -4,8 +4,7 @@ import com.google.common.collect.ImmutableList;
 import galena.oreganized.Oreganized;
 import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
 import io.github.fabricators_of_create.porting_lib.util.RegistryObject;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.biome.v1.*;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -75,10 +74,21 @@ public class OFeatures {
     }
 
     public static void registerBiomeModifications() {
+        BiomeModification overworld_ores = BiomeModifications.create(Oreganized.id("overworld_ores"));
+
+        overworld_ores.add(ModificationPhase.ADDITIONS, BiomeSelectors.foundInOverworld(),
+            context -> {
+                BiomeModificationContext.GenerationSettingsContext settings = context.getGenerationSettings();
+                settings.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, Placed.SILVER_ORE);
+                settings.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, Placed.SILVER_ORE_EXTRA);
+                settings.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, Placed.LEAD_ORE);
+            }
+        );
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, Placed.SILVER_ORE);
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, Placed.SILVER_ORE_EXTRA);
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, Placed.LEAD_ORE);
-        BiomeModifications.addFeature(BiomeSelectors.tag(BiomeTags.IS_SAVANNA), GenerationStep.Decoration.UNDERGROUND_ORES, Placed.LEAD_ORE_EXTRA);
+
+        overworld_ores.add(ModificationPhase.ADDITIONS, BiomeSelectors.tag(BiomeTags.IS_SAVANNA),
+            context -> context.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, Placed.LEAD_ORE_EXTRA)
+        );
     }
 
 

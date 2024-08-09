@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "oreganized:electrum_ingot"
+    "tag": "c:electrum_ingots"
   },
   "base": {
     "item": "minecraft:diamond_pickaxe"

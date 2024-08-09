@@ -1,19 +1,15 @@
 package galena.oreganized;
 
 import com.google.common.collect.ImmutableBiMap;
-import com.mojang.serialization.Codec;
 import galena.oreganized.compat.CompatHandler;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
 import galena.oreganized.content.effect.StunningEffect;
 import galena.oreganized.index.*;
 import galena.oreganized.utils.FluidInteractionRegistry;
-import galena.oreganized.world.AddItemLootModifier;
 import galena.oreganized.world.event.OPlayerEvents;
 import io.github.fabricators_of_create.porting_lib.config.ConfigRegistry;
 import io.github.fabricators_of_create.porting_lib.config.ConfigType;
 import io.github.fabricators_of_create.porting_lib.fluids.PortingLibFluids;
-import io.github.fabricators_of_create.porting_lib.loot.IGlobalLootModifier;
-import io.github.fabricators_of_create.porting_lib.loot.PortingLibLoot;
 import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -30,14 +26,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntries;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditions;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

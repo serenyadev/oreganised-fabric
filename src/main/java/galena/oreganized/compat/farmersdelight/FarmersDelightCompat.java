@@ -6,7 +6,6 @@ import io.github.fabricators_of_create.porting_lib.util.RegistryObject;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.world.item.CreativeModeTab;
-import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 import vectorwing.farmersdelight.common.registry.ModCreativeTabs;
 import vectorwing.farmersdelight.common.registry.ModItems;

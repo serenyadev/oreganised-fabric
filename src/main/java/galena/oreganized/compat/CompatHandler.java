@@ -1,11 +1,9 @@
 package galena.oreganized.compat;
 
-import com.redlimerl.detailab.DetailArmorBar;
 import galena.oreganized.compat.detailarmorbar.ODetailArmorBar;
 import galena.oreganized.compat.farmersdelight.FarmersDelightCompat;
 import galena.oreganized.compat.nethersdelight.NethersDelightCompat;
 import net.fabricmc.loader.api.FabricLoader;
-import umpaz.nethersdelight.NethersDelight;
 
 public class CompatHandler {
 

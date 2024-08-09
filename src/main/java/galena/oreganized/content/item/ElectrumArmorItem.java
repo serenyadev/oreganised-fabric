@@ -3,21 +3,15 @@ package galena.oreganized.content.item;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import galena.oreganized.Oreganized;
-import galena.oreganized.client.model.ElectrumArmorModel;
 import galena.oreganized.index.OArmorMaterials;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
-import java.util.function.Supplier;
 
 public class ElectrumArmorItem extends ArmorItem {
     public static final String TEXTURE = Oreganized.MOD_ID + ":textures/entity/electrum_armor.png";

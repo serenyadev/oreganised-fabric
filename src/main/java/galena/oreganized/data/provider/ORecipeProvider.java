@@ -165,13 +165,13 @@ public abstract class ORecipeProvider extends RecipeProvider {
                 .unlockedBy("has_" + ingredient, has(ingredient));
     }
 
-    public SmithingTransformRecipeBuilder smithingRecipe(Supplier<? extends Item> input, Supplier<? extends Item> upgradeItem, Supplier<? extends Item> templateItem, Supplier<? extends Item> result) {
-        return SmithingTransformRecipeBuilder.smithing(Ingredient.of(templateItem.get()), Ingredient.of(input.get()), Ingredient.of(upgradeItem.get()), RecipeCategory.MISC, result.get())
-                .unlocks("has_" + BuiltInRegistries.ITEM.getKey(upgradeItem.get()), has(upgradeItem.get()));
-    }
 
     public SmithingTransformRecipeBuilder smithingElectrum(Supplier<? extends Item> input, Supplier<? extends Item> result) {
-        return smithingRecipe(input, OItems.ELECTRUM_INGOT, OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE, result);
+        var templateItem = OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE;
+        var upgradeItem = OItems.ELECTRUM_INGOT;
+        return SmithingTransformRecipeBuilder.smithing(Ingredient.of(templateItem.get()), Ingredient.of(input.get()),
+                        Ingredient.of(OTags.Items.INGOTS_ELECTRUM), RecipeCategory.MISC, result.get())
+                .unlocks("has_" + BuiltInRegistries.ITEM.getKey(upgradeItem.get()), has(upgradeItem.get()));
     }
 
     public SingleItemRecipeBuilder stonecutting(Supplier<? extends Block> input, ItemLike result) {
