@@ -6,7 +6,7 @@ plugins {
 version = project.mod_version
 group = project.maven_group
 var modules = ['base', 'client_events', 'common', 'config', 'core', 'data', 'extensions', 'fluids',
-            'lazy_registration', 'level_events', 'loot', 'model_builders', 'tags']
+            'lazy_registration', 'level_events', 'model_builders', 'tags']
 
 base {
 	archivesName = project.archives_base_name

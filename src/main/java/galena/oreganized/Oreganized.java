@@ -17,6 +17,7 @@ import io.github.fabricators_of_create.porting_lib.loot.PortingLibLoot;
 import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.resources.ResourceLocation;
@@ -27,6 +28,16 @@ import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntries;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditions;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,12 +47,10 @@ public class Oreganized implements ModInitializer {
 
 	public static final String MOD_ID = "oreganized";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	private static final LazyRegistrar<Codec<? extends IGlobalLootModifier>> LOOT_MODIFIERS = LazyRegistrar.create(PortingLibLoot.GLOBAL_LOOT_MODIFIER_SERIALIZERS_KEY, Oreganized.MOD_ID);
+	private static final ResourceLocation MANSION_CHEST_LOOT_LOC = new ResourceLocation("minecraft:chests/woodland_mansion");
 
 	@Override
 	public void onInitialize() {
-
-		LOOT_MODIFIERS.register("add_item", () -> AddItemLootModifier.CODEC);
 
 		LazyRegistrar<?>[] registers = {
 				OBlockEntities.BLOCK_ENTITIES,
@@ -57,7 +66,7 @@ public class Oreganized implements ModInitializer {
 				OStructures.STRUCTURES,
 				OFeatures.FEATURES,
 				OPaintingVariants.PAINTING_VARIANTS,
-				LOOT_MODIFIERS,
+				// LOOT_MODIFIERS,
 		};
 
 		CompatHandler.init();
@@ -77,6 +86,7 @@ public class Oreganized implements ModInitializer {
 		StunningEffect.registerEvents();
 		OFeatures.registerBiomeModifications();
 
+		registerLootModification();
 		registerCreativeTabModifiers();
 		registerCauldronInteractions();
 		registerWaxedBlocks();
@@ -87,6 +97,20 @@ public class Oreganized implements ModInitializer {
 
 		FlammableBlockRegistry.getDefaultInstance().add(OBlocks.SHRAPNEL_BOMB.get(), 15, 100);
 
+	}
+
+	private void registerLootModification() {
+		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
+			if(MANSION_CHEST_LOOT_LOC.equals(id)) {
+				LootPool pool = LootPool.lootPool()
+						.setRolls(ConstantValue.exactly(1f))
+						.conditionally(LootItemRandomChanceCondition.randomChance(0.7f).build())
+						.with(LootItem.lootTableItem(OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE.get()).build())
+						.apply(SetItemCountFunction.setCount(ConstantValue.exactly(1f)))
+						.build();
+				tableBuilder.pool(pool);
+			}
+		});
 	}
 
 	private void registerCauldronInteractions() {
