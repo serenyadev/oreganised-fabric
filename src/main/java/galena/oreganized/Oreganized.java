@@ -55,7 +55,6 @@ public class Oreganized implements ModInitializer {
 				OPotions.POTIONS,
 				OSoundEvents.SOUNDS,
 				OStructures.STRUCTURES,
-				OFeatures.FEATURES,
 				OPaintingVariants.PAINTING_VARIANTS,
 				// LOOT_MODIFIERS,
 		};

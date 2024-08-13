@@ -26,13 +26,6 @@ import static net.minecraft.tags.BlockTags.STONE_ORE_REPLACEABLES;
 
 public class OFeatures {
 
-    public static final LazyRegistrar<Feature<?>> FEATURES = LazyRegistrar.create(Registries.FEATURE, Oreganized.MOD_ID);
-
-    public static final RegistryObject<Feature<OreConfiguration>> SILVER_ORE = FEATURES.register("silver_ore", () -> new OreFeature(OreConfiguration.CODEC));
-    public static final RegistryObject<Feature<OreConfiguration>> SILVER_ORE_EXTRA = FEATURES.register("silver_ore_extra", () -> new OreFeature(OreConfiguration.CODEC));
-    public static final RegistryObject<Feature<OreConfiguration>> LEAD_ORE = FEATURES.register("lead_ore", () -> new OreFeature(OreConfiguration.CODEC));
-    public static final RegistryObject<Feature<OreConfiguration>> LEAD_ORE_EXTRA = FEATURES.register("lead_ore_extra", () -> new OreFeature(OreConfiguration.CODEC));
-
     public static final class Configured {
         public static final ResourceKey<ConfiguredFeature<?, ?>> SILVER_ORE = create("silver_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> SILVER_ORE_EXTRA = create("silver_ore_extra");
