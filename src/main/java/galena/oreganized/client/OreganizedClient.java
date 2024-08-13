@@ -89,7 +89,7 @@ public class OreganizedClient implements ClientModInitializer {
                         OItems.ELECTRUM_CHESTPLATE.get(),
                         OItems.ELECTRUM_LEGGINGS.get(),
                         OItems.ELECTRUM_BOOTS.get())
-                .model(ElectrumArmorModel::getModel)
+                .model(ElectrumArmorModel::modelProvider)
                 .texture(ElectrumArmorItem.TEXTURE)
                 .vanillaTrimModel()
         );

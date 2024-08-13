@@ -84,7 +84,6 @@ public class OFeatures {
                 settings.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, Placed.LEAD_ORE);
             }
         );
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, Placed.SILVER_ORE);
 
         overworld_ores.add(ModificationPhase.ADDITIONS, BiomeSelectors.tag(BiomeTags.IS_SAVANNA),
             context -> context.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, Placed.LEAD_ORE_EXTRA)

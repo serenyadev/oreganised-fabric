@@ -92,7 +92,7 @@ repositories {
 
 fabricApi {
 	configureDataGeneration() {
-		it.createRunConfiguration = false
+		createRunConfiguration = false
 	}
 }
 

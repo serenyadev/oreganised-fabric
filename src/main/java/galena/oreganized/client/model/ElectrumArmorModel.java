@@ -43,6 +43,10 @@ public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorMod
         this.LeftBoot = root.getChild("LeftBoot");
     }
 
+    public static HumanoidModel<?> modelProvider(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> original, ArmorModelCache cache) {
+        return cache.compute("electrum_" + armorSlot.getName(), () -> new ElectrumArmorModel<>(ElectrumArmorModel.createBodyLayer().bakeRoot(), armorSlot));
+    }
+
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshdefinition = HumanoidArmorModel.createMesh(CubeDeformation.NONE, 0.0F);
         PartDefinition partdefinition = meshdefinition.getRoot();
@@ -129,9 +133,5 @@ public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorMod
             this.LeftBoot.render(poseStack, buffer, packedLight, packedOverlay);
             poseStack.popPose();
         }
-    }
-
-    public static HumanoidModel<?> getModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> original, ArmorModelCache cache) {
-        return cache.compute(armorSlot.getName(), () -> new ElectrumArmorModel<>(ElectrumArmorModel.createBodyLayer().bakeRoot(), armorSlot));
     }
 }
