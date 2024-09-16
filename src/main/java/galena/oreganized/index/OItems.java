@@ -31,7 +31,7 @@ public class OItems {
     // Tools
     public static final RegistryObject<Item> BUSH_HAMMER = ITEMS.register("bush_hammer", () -> new BushHammerItem(OItemTiers.LEAD, 2.5F, -2.8F, (new Item.Properties()).stacksTo(1)));
 
-    public static final RegistryObject<OSwordItem> ELECTRUM_SWORD = ITEMS.register("electrum_sword", () -> new OSwordItem(OItemTiers.ELECTRUM, 3, -2.2F, (new Item.Properties())));
+    public static final RegistryObject<SwordItem> ELECTRUM_SWORD = ITEMS.register("electrum_sword", () -> new SwordItem(OItemTiers.ELECTRUM, 3, -2.2F, (new Item.Properties())));
     public static final RegistryObject<ShovelItem> ELECTRUM_SHOVEL = ITEMS.register("electrum_shovel", () -> new ShovelItem(OItemTiers.ELECTRUM, 1.5F, -2.8F, (new Item.Properties())));
     public static final RegistryObject<PickaxeItem> ELECTRUM_PICKAXE = ITEMS.register("electrum_pickaxe", () -> new PickaxeItem(OItemTiers.ELECTRUM, 1, -2.6F, (new Item.Properties())));
     public static final RegistryObject<AxeItem> ELECTRUM_AXE = ITEMS.register("electrum_axe", () -> new AxeItem(OItemTiers.ELECTRUM, 6.0F, -2.8F, (new Item.Properties())));
