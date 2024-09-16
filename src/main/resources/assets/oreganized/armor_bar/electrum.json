@@ -1,0 +1,35 @@
+{
+  "type": "armor",
+  "items": [
+    "oreganized:electrum_helmet",
+    "oreganized:electrum_chestplate",
+    "oreganized:electrum_leggings",
+    "oreganized:electrum_boots"
+  ],
+  "render": {
+    "full": {
+      "texture": "oreganized:textures/gui/armor_bar.png",
+      "texture_width": 18,
+      "texture_height": 18,
+      "offset": [9, 9]
+    },
+    "half": {
+      "texture": "oreganized:textures/gui/armor_bar.png",
+      "texture_width": 18,
+      "texture_height": 18,
+      "offset": [0, 9]
+    },
+    "outline": {
+      "texture": "oreganized:textures/gui/armor_bar.png",
+      "texture_width": 18,
+      "texture_height": 18,
+      "offset": [9, 0]
+    },
+    "outline_half": {
+      "texture": "oreganized:textures/gui/armor_bar.png",
+      "texture_width": 18,
+      "texture_height": 18,
+      "offset": [0, 0]
+    }
+  }
+}

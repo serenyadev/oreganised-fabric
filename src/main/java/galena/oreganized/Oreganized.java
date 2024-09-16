@@ -7,8 +7,6 @@ import galena.oreganized.content.effect.StunningEffect;
 import galena.oreganized.index.*;
 import galena.oreganized.utils.FluidInteractionRegistry;
 import galena.oreganized.world.event.OPlayerEvents;
-import io.github.fabricators_of_create.porting_lib.config.ConfigRegistry;
-import io.github.fabricators_of_create.porting_lib.config.ConfigType;
 import io.github.fabricators_of_create.porting_lib.fluids.PortingLibFluids;
 import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
 import net.fabricmc.api.ModInitializer;
@@ -31,7 +29,6 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCon
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.Map;
 
 public class Oreganized implements ModInitializer {
@@ -69,8 +66,6 @@ public class Oreganized implements ModInitializer {
 				PortingLibFluids.WATER_TYPE,
 				fluidState -> OBlocks.LEAD_BLOCK.get().defaultBlockState()
 		));
-
-		ConfigRegistry.registerConfig(MOD_ID, ConfigType.COMMON, OreganizedConfig.COMMON_SPEC);
 
 		OPlayerEvents.register();
 		StunningEffect.registerEvents();
