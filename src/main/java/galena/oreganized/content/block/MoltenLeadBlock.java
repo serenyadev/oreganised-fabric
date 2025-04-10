@@ -151,7 +151,7 @@ public class MoltenLeadBlock extends LiquidBlock {
                 entity.makeStuckInBlock(state, new Vec3(0.9F, 1.0D, 0.9F));
             }
 
-            if (entity instanceof LivingEntity living && living.isUsingItem() && living.getUseItemRemainingTicks() == 0 && living.getItemInHand(living.getUsedItemHand()).isEdible() && OreganizedConfig.COMMON.leadPoisining.get()) {
+            if (entity instanceof LivingEntity living && living.isUsingItem() && living.getUseItemRemainingTicks() == 0 && living.getItemInHand(living.getUsedItemHand()).isEdible()) {
                 if (OreganizedConfig.stunningFromConfig()) living.addEffect(new MobEffectInstance(OEffects.STUNNING.get(), 40 * 20));
                 living.addEffect(new MobEffectInstance(MobEffects.POISON, 200));
             }

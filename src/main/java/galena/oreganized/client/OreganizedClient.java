@@ -35,7 +35,7 @@ public class OreganizedClient implements ClientModInitializer {
         //registerClientNetworking();
 
         OParticleTypes.registerParticleFactories();
-        ConfigRegistry.registerConfig(Oreganized.MOD_ID, ConfigType.CLIENT, OreganizedConfig.CLIENT_SPEC);
+        //ConfigRegistry.registerConfig(Oreganized.MOD_ID, ConfigType.CLIENT, OreganizedConfig.CLIENT_SPEC);
 
         ItemProperties.register(OItems.SILVER_MIRROR.get(), new ResourceLocation("level"), (stack, world, entity, seed) -> {
             return stack.getOrCreateTag().getInt("Level") / 10f;

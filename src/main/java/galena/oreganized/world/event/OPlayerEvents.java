@@ -103,7 +103,7 @@ public class OPlayerEvents {
                         leadPoisoning = true;
                 }
             }
-            if ((entity.getOffhandItem().is(OTags.Items.LEAD_SOURCE) || leadPoisoning) && OreganizedConfig.COMMON.leadPoisining.get()) {
+            if ((entity.getOffhandItem().is(OTags.Items.LEAD_SOURCE) || leadPoisoning)) {
                 if (OreganizedConfig.stunningFromConfig()) entity.addEffect(new MobEffectInstance(OEffects.STUNNING.get(), 40 * 20));
                 entity.addEffect(new MobEffectInstance(MobEffects.POISON, 200));
             }
